@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      - DB_HOST=postgres
+    depends_on:
+      - postgres
+      - kafka
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: kongbank
+      POSTGRES_USER: kong
+      POSTGRES_PASSWORD: kongpass
+
+  kafka:
+    image: bitnami/kafka:latest

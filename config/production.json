@@ -1,0 +1,18 @@
+{
+  "app": "KONG BANK",
+  "env": "production",
+  "port": 4000,
+  "database": {
+    "host": "kong-postgres-service",
+    "user": "kong",
+    "password": "${DB_PASSWORD}",
+    "db": "kongbank"
+  },
+  "kafka": {
+    "broker": "kong-kafka:9092"
+  },
+  "security": {
+    "encryption": "AES-256",
+    "audit": true
+  }
+}

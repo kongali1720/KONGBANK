@@ -1,2249 +1,729 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>kongBANK - Solusi Perbankan Terpercaya</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>kongBANK — Global Private Wealth Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #3730a3 100%); }
-        .luxury-gradient { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%); }
-        .premium-bg { background: linear-gradient(135deg, #1f2937 0%, #374151 100%); }
-        .card-hover { transition: all 0.4s ease; }
-        .card-hover:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.25); }
-        .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
-        .text-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
-        .hero-bg { 
-            background: 
-                linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 64, 175, 0.75), rgba(251, 191, 36, 0.3)),
-                url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop') center/cover;
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            min-height: 70vh;
+        :root {
+            --brand-red: #DA291C;
+            --brand-black: #000000;
+            --brand-white: #FFFFFF;
+            --brand-gray: #F4F4F4;
+            --brand-dark-gray: #0A0A0A;
+            --brand-border: #E5E5E5;
         }
-        
-        /* Mobile optimized hero - scroll instead of fixed for better performance */
-        @media (max-width: 768px) {
-            .hero-bg {
-                background: 
-                    linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 64, 175, 0.8), rgba(251, 191, 36, 0.4)),
-                    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop') center/cover;
-                background-attachment: scroll;
-                background-size: cover;
-                background-position: center;
-                min-height: 60vh;
-            }
-        }
-        .about-bg {
-            background: 
-                linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.92)),
-                url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1469&auto=format&fit=crop') center/cover;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        
-        @media (max-width: 768px) {
-            .about-bg {
-                background: 
-                    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.92)),
-                    url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop') center/cover;
-                background-attachment: scroll;
-                background-size: cover;
-                background-position: center;
-            }
-        }
-        
-        /* Mobile First Responsive Styles */
-        * {
-            box-sizing: border-box;
-        }
-        
-        html, body {
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--brand-white);
+            color: var(--brand-black);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5 { letter-spacing: -0.02em; }
+        
+        .uppercase-wide {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+        }
+
+        .grid-pattern {
+            background-image: linear-gradient(var(--brand-border) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--brand-border) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .corp-card {
+            background: var(--brand-white);
+            border: 1px solid var(--brand-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .corp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 100vw;
+            height: 4px;
+            background: var(--brand-black);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .container {
-            max-width: 100%;
-            width: 100%;
-            margin: 0 auto;
-            padding-left: 1rem;
-            padding-right: 1rem;
+        .corp-card:hover {
+            border-color: var(--brand-black);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
         }
-        
-        @media (min-width: 640px) {
-            .container {
-                max-width: 640px;
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
+        .corp-card:hover::before {
+            transform: scaleX(1);
+            background: var(--brand-red);
         }
-        
-        @media (min-width: 768px) {
-            .container {
-                max-width: 768px;
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
+
+        .corp-card-dark {
+            background: var(--brand-dark-gray);
+            border: 1px solid #222;
+            transition: all 0.3s ease;
         }
-        
-        @media (min-width: 1024px) {
-            .container {
-                max-width: 1024px;
-            }
+        .corp-card-dark:hover {
+            background: var(--brand-black);
+            border-color: var(--brand-red);
         }
-        
-        @media (min-width: 1280px) {
-            .container {
-                max-width: 1280px;
-            }
+
+        .btn-corp {
+            background: var(--brand-black);
+            color: var(--brand-white);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 1rem 2rem;
+            border: 2px solid var(--brand-black);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
-        
-        /* Base Mobile Styles */
-        .hero-text { 
-            font-size: 1.5rem; 
-            line-height: 1.1; 
+        .btn-corp:hover {
+            background: var(--brand-red);
+            border-color: var(--brand-red);
         }
-        .hero-subtitle { 
-            font-size: 0.875rem; 
-            line-height: 1.3; 
+        .btn-corp-outline {
+            background: transparent;
+            color: var(--brand-black);
+            border: 2px solid var(--brand-black);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
         }
-        .section-title { 
-            font-size: 1.25rem; 
-            line-height: 1.2; 
+        .btn-corp-outline:hover {
+            background: var(--brand-black);
+            color: var(--brand-white);
         }
-        .section-subtitle { 
-            font-size: 0.875rem; 
-            line-height: 1.3; 
+
+        .hexagon {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
         }
-        .mobile-text { 
-            font-size: 0.8rem; 
-            line-height: 1.3; 
-        }
-        .mobile-button { 
-            padding: 0.5rem 0.8rem; 
-            font-size: 0.8rem; 
-        }
-        .mobile-padding { 
-            padding: 0.75rem; 
-        }
-        .mobile-margin { 
-            margin-bottom: 1rem; 
-        }
-        .mobile-grid { 
-            grid-template-columns: 1fr; 
-            gap: 0.75rem; 
-        }
-        
-        /* Tablet Styles */
-        @media (min-width: 640px) {
-            .hero-text { font-size: 2rem; }
-            .hero-subtitle { font-size: 1rem; }
-            .section-title { font-size: 1.5rem; }
-            .section-subtitle { font-size: 1rem; }
-            .mobile-text { font-size: 0.875rem; }
-            .mobile-button { padding: 0.7rem 1rem; font-size: 0.875rem; }
-            .mobile-padding { padding: 1rem; }
-            .mobile-margin { margin-bottom: 1.5rem; }
-            .mobile-grid { gap: 1rem; }
-        }
-        
-        /* Desktop Styles */
-        @media (min-width: 768px) {
-            .hero-text { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.125rem; }
-            .section-title { font-size: 2rem; }
-            .section-subtitle { font-size: 1.125rem; }
-            .mobile-text { font-size: 1rem; }
-            .mobile-button { padding: 0.75rem 1.5rem; font-size: 1rem; }
-            .mobile-padding { padding: 1.5rem; }
-            .mobile-margin { margin-bottom: 2rem; }
-            .mobile-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-        }
-        
-        @media (min-width: 1024px) {
-            .hero-text { font-size: 3rem; }
-            .section-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.25rem; }
-            .section-subtitle { font-size: 1.25rem; }
-        }
-        
-        /* Crypto Partners Animation */
+
         @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
-        
-        .animate-marquee {
-            animation: marquee 20s linear infinite;
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 60s linear infinite;
         }
-        
-        /* Crypto logo animations */
-        @keyframes cryptoFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            25% { transform: translateY(-3px) rotate(1deg); }
-            50% { transform: translateY(-6px) rotate(0deg); }
-            75% { transform: translateY(-3px) rotate(-1deg); }
+        .ticker-track-reverse {
+            display: flex;
+            width: max-content;
+            animation: marquee 80s linear infinite reverse;
         }
-        
-        @keyframes cryptoRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        @keyframes cryptoPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        @keyframes cryptoGlow {
-            0%, 100% { 
-                box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
-                border-color: rgba(255, 255, 255, 0.2);
-            }
-            50% { 
-                box-shadow: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 30px rgba(251, 191, 36, 0.4);
-                border-color: rgba(251, 191, 36, 0.4);
-            }
-        }
-        
-        /* Apply different animations to crypto containers */
-        .crypto-container {
-            animation: cryptoFloat 4s ease-in-out infinite, cryptoGlow 3s ease-in-out infinite;
-        }
-        
-        .crypto-container:nth-child(2n) {
-            animation: cryptoFloat 4s ease-in-out infinite reverse, cryptoGlow 3s ease-in-out infinite;
-            animation-delay: -1s, -0.5s;
-        }
-        
-        .crypto-container:nth-child(3n) {
-            animation: cryptoFloat 5s ease-in-out infinite, cryptoGlow 4s ease-in-out infinite;
-            animation-delay: -2s, -1s;
-        }
-        
-        .crypto-container:nth-child(4n) {
-            animation: cryptoFloat 4.5s ease-in-out infinite reverse, cryptoGlow 3.5s ease-in-out infinite;
-            animation-delay: -1.5s, -0.8s;
-        }
-        
-        .crypto-container:nth-child(5n) {
-            animation: cryptoFloat 3.8s ease-in-out infinite, cryptoGlow 2.8s ease-in-out infinite;
-            animation-delay: -0.5s, -1.2s;
-        }
-        
-        /* Crypto logo image rotation */
-        .crypto-logo-img {
-            animation: cryptoRotate 20s linear infinite;
-        }
-        
-        .crypto-logo-img:nth-child(2n) {
-            animation: cryptoRotate 25s linear infinite reverse;
-        }
-        
-        .crypto-logo-img:nth-child(3n) {
-            animation: cryptoRotate 18s linear infinite;
-        }
-        
-        /* Enhanced hover effects */
-        .crypto-container:hover {
-            animation-play-state: paused;
-            transform: translateY(-8px) scale(1.15) !important;
-            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4), 0 0 25px rgba(251, 191, 36, 0.6) !important;
-            border-color: rgba(251, 191, 36, 0.8) !important;
-        }
-        
-        .crypto-container:hover .crypto-logo-img {
-            animation-play-state: paused;
-            transform: rotate(10deg) scale(1.1);
-        }
-        
-        /* MIND BLOWING FEATURES */
-        
-        /* Live Crypto Price Ticker */
-        @keyframes tickerScroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        .crypto-ticker {
-            animation: tickerScroll 45s linear infinite;
-        }
-        
-        .price-up { color: #10B981; }
-        .price-down { color: #EF4444; }
-        
-        /* Social Proof Notifications */
-        @keyframes slideInNotification {
-            0% { transform: translateX(100%) scale(0.8); opacity: 0; }
-            10% { transform: translateX(0) scale(1); opacity: 1; }
-            90% { transform: translateX(0) scale(1); opacity: 1; }
-            100% { transform: translateX(-100%) scale(0.8); opacity: 0; }
-        }
-        
-        .social-notification {
-            animation: slideInNotification 8s ease-in-out;
-        }
-        
-        /* Profit Counter Animation */
-        @keyframes countUp {
-            0% { transform: translateY(20px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-        
-        .profit-digit {
-            animation: countUp 0.5s ease-out;
-        }
-        
-        /* Testimonial Carousel */
-        @keyframes fadeInTestimonial {
-            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        
-        .testimonial-active {
-            animation: fadeInTestimonial 0.6s ease-out;
-        }
-        
-        /* Wealth Calculator */
-        .calculator-glow {
-            box-shadow: 0 0 30px rgba(251, 191, 36, 0.4), 0 0 60px rgba(251, 191, 36, 0.2);
-        }
-        
-        /* Urgency Elements */
-        @keyframes urgencyPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
-            }
-            50% { 
-                transform: scale(1.05); 
-                box-shadow: 0 0 40px rgba(239, 68, 68, 0.6);
-            }
-        }
-        
-        .urgency-pulse {
-            animation: urgencyPulse 2s ease-in-out infinite;
-        }
-        
-        /* Countdown Timer */
-        @keyframes countdownBlink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.3; }
-        }
-        
-        .countdown-blink {
-            animation: countdownBlink 1s infinite;
-        }
-        
-        /* WhatsApp Widget Bounce */
-        @keyframes whatsappBounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        .whatsapp-bounce {
-            animation: whatsappBounce 2s infinite;
-        }
-        
-        /* Floating Elements */
-        @keyframes floatUp {
-            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
-        
-        .float-element {
-            animation: floatUp 4s ease-out infinite;
-        }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu {
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
+
+        .border-corp-top { border-top: 1px solid var(--brand-border); }
+        .border-corp-bottom { border-bottom: 1px solid var(--brand-border); }
+
+        .corp-dropdown {
             opacity: 0;
             visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
         }
-        .mobile-menu.active {
-            transform: translateY(0);
+        .corp-dropdown.active {
             opacity: 1;
             visibility: visible;
+            transform: translateY(0);
         }
-        
-        /* Ensure brand logo is always visible */
-        .brand-logo {
-            display: block !important;
-            visibility: visible !important;
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--brand-border);
+            height: 2px;
+            outline: none;
         }
-        
-        /* Mobile Menu Fix */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--brand-red);
+            cursor: pointer;
+            border: 4px solid white;
+            box-shadow: 0 0 0 1px black;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--brand-red);
+            cursor: pointer;
+            border: 4px solid white;
+            box-shadow: 0 0 0 1px black;
+        }
+
+        @keyframes slideInNotif {
+            0% { transform: translateX(120%); opacity: 0; }
+            10%, 90% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(120%); opacity: 0; }
+        }
+        .notif-anim { animation: slideInNotif 8s ease-in-out forwards; }
+
         .mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            width: 100%;
-            max-width: 100vw;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
         }
-        
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            width: 100%;
-            max-width: 100vw;
-        }
-        
-        .brand-logo h1 {
-            font-size: 1.125rem;
-            line-height: 1.2;
-        }
-        
-        @media (min-width: 640px) {
-            .brand-logo h1 {
-                font-size: 1.5rem;
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .brand-logo h1 {
-                font-size: 1.875rem;
-            }
-        }
+        .mobile-menu.active { max-height: 500px; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
+
     <!-- Header -->
-    <header class="glass-effect backdrop-blur-lg bg-white/90 shadow-2xl sticky top-0 z-50 border-b border-gold-200">
-        <div class="container">
-            <div class="flex justify-between items-center min-h-[60px] py-3">
-                <div class="flex items-center brand-logo">
-                    <h1 class="text-2xl md:text-3xl font-bold text-gray-800">
-                        kong<span class="text-amber-600">BANK</span>
-                    </h1>
-                </div>
-                <!-- Language Selector -->
-                <div class="hidden md:flex items-center mr-6">
-                    <div class="relative">
-                        <button id="language-btn" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-amber-50 transition-all duration-300 border border-amber-200">
-                            <span id="current-flag" class="text-lg">🇮🇩</span>
-                            <span id="current-lang" class="text-sm font-medium text-gray-700">ID</span>
-                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
+    <header class="bg-white border-corp-bottom sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#beranda" class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-black hexagon flex items-center justify-center">
+                        <div class="w-8 h-8 bg-white hexagon flex items-center justify-center">
+                            <span class="font-bold text-black text-sm">K</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold tracking-tight">
+                            kong<span style="color: var(--brand-red)">BANK</span>
+                        </h1>
+                        <p class="text-[10px] uppercase-wide text-gray-500 -mt-1">Private Wealth</p>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-12">
+                    <a href="#beranda" class="uppercase-wide text-xs text-gray-600 hover:text-black transition-colors">Overview</a>
+                    <a href="#expertise" class="uppercase-wide text-xs text-gray-600 hover:text-black transition-colors">Expertise</a>
+                    <a href="#membership" class="uppercase-wide text-xs text-gray-600 hover:text-black transition-colors">Membership</a>
+                    <a href="#insights" class="uppercase-wide text-xs text-gray-600 hover:text-black transition-colors">Insights</a>
+                    <a href="#kontak" class="uppercase-wide text-xs text-gray-600 hover:text-black transition-colors">Contact</a>
+                </nav>
+
+                <div class="flex items-center gap-6">
+                    <div class="hidden md:block relative">
+                        <button id="language-btn" class="flex items-center gap-2 uppercase-wide text-xs hover:text-red-600 transition-colors">
+                            <span>🇬🇧</span>
+                            <span>EN</span>
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div id="language-dropdown" class="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-amber-200 opacity-0 invisible transform scale-95 transition-all duration-300 z-50">
-                            <div class="py-2">
-                                <button class="language-option w-full text-left px-4 py-3 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-3" data-lang="id">
-                                    <span class="text-lg">🇮🇩</span>
-                                    <span class="font-medium">Bahasa Indonesia</span>
-                                </button>
-                                <button class="language-option w-full text-left px-4 py-3 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-3" data-lang="en">
-                                    <span class="text-lg">🇺🇸</span>
-                                    <span class="font-medium">English</span>
-                                </button>
-                                <button class="language-option w-full text-left px-4 py-3 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-3" data-lang="zh">
-                                    <span class="text-lg">🇨🇳</span>
-                                    <span class="font-medium">中文 (Chinese)</span>
-                                </button>
-                                <button class="language-option w-full text-left px-4 py-3 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-3" data-lang="ja">
-                                    <span class="text-lg">🇯🇵</span>
-                                    <span class="font-medium">日本語 (Japanese)</span>
-                                </button>
-                                <button class="language-option w-full text-left px-4 py-3 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-3" data-lang="ko">
-                                    <span class="text-lg">🇰🇷</span>
-                                    <span class="font-medium">한국어 (Korean)</span>
-                                </button>
+                        <div id="language-dropdown" class="corp-dropdown absolute top-full right-0 mt-4 w-48 bg-white border border-black shadow-xl">
+                            <div class="py-1">
+                                <button class="w-full text-left px-4 py-3 hover:bg-gray-100 transition-colors flex items-center gap-3 text-xs uppercase-wide"><span class="text-base">🇬🇧</span> English</button>
+                                <button class="w-full text-left px-4 py-3 hover:bg-gray-100 transition-colors flex items-center gap-3 text-xs uppercase-wide"><span class="text-base">🇨🇳</span> 中文</button>
+                                <button class="w-full text-left px-4 py-3 hover:bg-gray-100 transition-colors flex items-center gap-3 text-xs uppercase-wide"><span class="text-base">🇸🇦</span> العربية</button>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <nav id="desktop-nav" class="hidden md:flex space-x-6">
-                    <a href="#beranda" class="text-gray-700 hover:text-amber-600 transition-all duration-300 font-medium text-sm" data-translate="nav_home">Beranda</a>
-                    <a href="#tentang" class="text-gray-700 hover:text-amber-600 transition-all duration-300 font-medium text-sm" data-translate="nav_about">Tentang Kami</a>
-                    <a href="#layanan" class="text-gray-700 hover:text-amber-600 transition-all duration-300 font-medium text-sm" data-translate="nav_services">Layanan</a>
-                    <a href="#kontak" class="text-gray-700 hover:text-amber-600 transition-all duration-300 font-medium text-sm" data-translate="nav_contact">Kontak</a>
-                </nav>
-                <button id="login-btn" class="luxury-gradient px-3 py-2 rounded-lg text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hidden md:block text-xs" data-translate="login">
-                    Login
-                </button>
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-800 hover:text-amber-600 transition-colors duration-300">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                    <button id="login-btn" class="hidden md:block btn-corp text-xs py-2.5 px-6">Client Portal</button>
+
+                    <button id="mobile-menu-btn" class="lg:hidden p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
             </div>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden glass-effect bg-white/95 shadow-2xl border-b border-amber-200">
-            <div class="container">
-                <nav class="flex flex-col space-y-4 py-4">
-                    <!-- Mobile Language Selector -->
-                    <div class="border-b border-gray-200 pb-4">
-                        <p class="text-sm font-medium text-gray-600 mb-3" data-translate="select_language">Pilih Bahasa:</p>
-                        <div class="grid grid-cols-2 gap-2">
-                            <button class="mobile-language-option px-3 py-2 rounded-lg border border-gray-200 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-2 text-sm" data-lang="id">
-                                <span>🇮🇩</span><span>ID</span>
-                            </button>
-                            <button class="mobile-language-option px-3 py-2 rounded-lg border border-gray-200 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-2 text-sm" data-lang="en">
-                                <span>🇺🇸</span><span>EN</span>
-                            </button>
-                            <button class="mobile-language-option px-3 py-2 rounded-lg border border-gray-200 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-2 text-sm" data-lang="zh">
-                                <span>🇨🇳</span><span>中文</span>
-                            </button>
-                            <button class="mobile-language-option px-3 py-2 rounded-lg border border-gray-200 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-2 text-sm" data-lang="ja">
-                                <span>🇯🇵</span><span>日本語</span>
-                            </button>
-                            <button class="mobile-language-option px-3 py-2 rounded-lg border border-gray-200 hover:bg-amber-50 transition-all duration-300 flex items-center space-x-2 text-sm" data-lang="ko">
-                                <span>🇰🇷</span><span>한국어</span>
-                            </button>
-                        </div>
-                    </div>
 
-                    <a href="#beranda" class="text-gray-800 hover:text-amber-600 transition-all duration-300 font-semibold py-2 border-b border-gray-200 text-base" data-translate="nav_home">Beranda</a>
-                    <a href="#tentang" class="text-gray-800 hover:text-amber-600 transition-all duration-300 font-semibold py-2 border-b border-gray-200 text-base" data-translate="nav_about">Tentang Kami</a>
-                    <a href="#layanan" class="text-gray-800 hover:text-amber-600 transition-all duration-300 font-semibold py-2 border-b border-gray-200 text-base" data-translate="nav_services">Layanan</a>
-                    <a href="#kontak" class="text-gray-800 hover:text-amber-600 transition-all duration-300 font-semibold py-2 border-b border-gray-200 text-base" data-translate="nav_contact">Kontak</a>
-                    <button id="mobile-login-btn" class="luxury-gradient px-4 py-3 rounded-lg text-white font-bold shadow-lg mt-3 w-full text-base" data-translate="login">
-                        Login
-                    </button>
-                </nav>
+        <div id="mobile-menu" class="mobile-menu lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#beranda" class="block py-2 uppercase-wide text-sm">Overview</a>
+                <a href="#expertise" class="block py-2 uppercase-wide text-sm">Expertise</a>
+                <a href="#membership" class="block py-2 uppercase-wide text-sm">Membership</a>
+                <a href="#insights" class="block py-2 uppercase-wide text-sm">Insights</a>
+                <a href="#kontak" class="block py-2 uppercase-wide text-sm">Contact</a>
+                <button class="btn-corp w-full mt-4">Client Portal</button>
             </div>
         </div>
     </header>
 
-    <!-- LIVE CRYPTO PRICE TICKER -->
-    <div class="bg-black text-white py-2 overflow-hidden relative z-40">
-        <div class="whitespace-nowrap crypto-ticker">
-            <span class="mx-8">
-                <strong>BTC:</strong> <span class="price-up font-bold">$67,890</span> <span class="text-green-400 text-xs">+2.34%</span>
-            </span>
-            <span class="mx-8">
-                <strong>ETH:</strong> <span class="price-up font-bold">$3,456</span> <span class="text-green-400 text-xs">+1.89%</span>
-            </span>
-            <span class="mx-8">
-                <strong>BNB:</strong> <span class="price-down font-bold">$598</span> <span class="text-red-400 text-xs">-0.45%</span>
-            </span>
-            <span class="mx-8">
-                <strong>ADA:</strong> <span class="price-up font-bold">$0.89</span> <span class="text-green-400 text-xs">+3.21%</span>
-            </span>
-            <span class="mx-8">
-                <strong>SOL:</strong> <span class="price-up font-bold">$156</span> <span class="text-green-400 text-xs">+5.67%</span>
-            </span>
-            <span class="mx-8">
-                <strong>USDC:</strong> <span class="text-gray-300 font-bold">$1.00</span> <span class="text-gray-400 text-xs">0.00%</span>
-            </span>
-            <span class="mx-8">🚀 <strong class="text-amber-400">kongBANK Crypto Trading LIVE!</strong> 💎</span>
-        </div>
-    </div>
-
-    <!-- URGENCY BANNER -->
-    <div class="bg-gradient-to-r from-red-600 to-red-700 text-white py-3 relative z-40">
-        <div class="container text-center">
-            <div class="flex items-center justify-center space-x-4">
-                <span class="urgency-pulse bg-white text-red-600 px-3 py-1 rounded-full text-sm font-bold">⚡ FLASH OFFER</span>
-                <span class="font-bold">Hanya <span id="spots-left" class="text-yellow-300 text-xl">47</span> VIP spots tersisa bulan ini!</span>
-                <div class="countdown-blink text-yellow-300 font-mono font-bold" id="countdown-timer">23:45:12</div>
+    <!-- Market Ticker -->
+    <div class="bg-black text-white py-2.5 overflow-hidden border-b-2 border-red-600">
+        <div class="ticker-track">
+            <div class="flex items-center gap-12 px-6 whitespace-nowrap text-xs uppercase-wide">
+                <span>S&P 500 <span class="text-green-400 font-bold">4,783.45</span> +0.82%</span>
+                <span class="text-gray-600">|</span>
+                <span>FTSE 100 <span class="text-green-400 font-bold">7,654.20</span> +0.45%</span>
+                <span class="text-gray-600">|</span>
+                <span>Gold <span class="text-red-400 font-bold">$2,034</span> -0.12%</span>
+                <span class="text-gray-600">|</span>
+                <span>USD/CHF <span class="text-green-400 font-bold">0.875</span> +0.05%</span>
+                <span class="text-gray-600">|</span>
+                <span>BTC <span class="text-green-400 font-bold">$67,890</span> +2.34%</span>
+                <span class="text-gray-600">|</span>
+                <span style="color: var(--brand-red)">INSTITUTIONAL EXECUTION LIVE</span>
+                <span class="text-gray-600">|</span>
+            </div>
+            <div class="flex items-center gap-12 px-6 whitespace-nowrap text-xs uppercase-wide">
+                <span>S&P 500 <span class="text-green-400 font-bold">4,783.45</span> +0.82%</span>
+                <span class="text-gray-600">|</span>
+                <span>FTSE 100 <span class="text-green-400 font-bold">7,654.20</span> +0.45%</span>
+                <span class="text-gray-600">|</span>
+                <span>Gold <span class="text-red-400 font-bold">$2,034</span> -0.12%</span>
+                <span class="text-gray-600">|</span>
+                <span>USD/CHF <span class="text-green-400 font-bold">0.875</span> +0.05%</span>
+                <span class="text-gray-600">|</span>
+                <span>BTC <span class="text-green-400 font-bold">$67,890</span> +2.34%</span>
+                <span class="text-gray-600">|</span>
+                <span style="color: var(--brand-red)">INSTITUTIONAL EXECUTION LIVE</span>
+                <span class="text-gray-600">|</span>
             </div>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section id="beranda" class="hero-bg py-16 relative overflow-hidden min-h-[70vh]">
-        <!-- Animated background elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-10 left-10 w-20 h-20 bg-amber-400/20 rounded-full blur-xl animate-pulse"></div>
-            <div class="absolute top-32 right-20 w-16 h-16 bg-blue-400/20 rounded-full blur-lg animate-bounce"></div>
-            <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-amber-300/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
-            <div class="absolute top-1/2 right-10 w-12 h-12 bg-white/10 rounded-full blur-md animate-ping delay-500"></div>
-        </div>
-        
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
-        <div class="container relative z-10">
-            <div class="text-center text-white">
-                <div class="mb-8">
-                    <!-- Clean Professional Hero Brand -->
-                    <div class="text-center">
-                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 text-shadow">
-                            <span class="text-white">kong</span><span class="text-amber-300">BANK</span>
-                        </h1>
-                        <p class="text-lg md:text-xl text-amber-200 font-medium tracking-widest uppercase" data-translate="tagline">
-                            Premier Financial Institution
-                        </p>
-                    </div>
-                </div>
-                <h2 class="hero-text font-bold mb-6 text-shadow">
-                    <span class="text-white" data-translate="welcome">Selamat Datang</span>
-                </h2>
-                <h3 class="text-lg md:text-2xl font-medium mb-6 text-amber-200 tracking-wide" data-translate="premium_excellence">
-                    Premium Banking Excellence
-                </h3>
-                <p class="hero-subtitle max-w-2xl mx-auto text-shadow leading-relaxed mb-8" data-translate="hero_description">
-                    Bergabunglah dengan lebih dari 1 juta nasabah premium yang mempercayai 
-                    <span class="text-amber-300 font-semibold">kongBANK</span> untuk solusi finansial eksklusif, 
-                    investasi berkelas dunia, dan layanan concierge 24/7 yang tak terbanding.
+    <section id="beranda" class="bg-white border-corp-bottom py-20 lg:py-32 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full grid-pattern opacity-50 hidden md:block"></div>
+        <div class="absolute top-0 right-0 w-1/4 h-full bg-black hidden md:block"></div>
+        <div class="absolute top-0 right-[25%] w-20 h-full bg-red-600 hidden md:block"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <span class="inline-block bg-gray-100 px-4 py-2 text-xs uppercase-wide text-gray-700 mb-8 border-l-2 border-red-600">Global Financial Institution</span>
+                
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] mb-8">
+                    Wealth<br>Management.<br><span style="color: var(--brand-red)">Without Borders.</span>
+                </h1>
+
+                <p class="text-lg text-gray-600 leading-relaxed mb-10 max-w-xl">
+                    Protecting and growing capital across generations. kongBANK provides institutional-grade asset management, cross-border financial structuring, and exclusive digital asset integration for the world's most discerning clients.
                 </p>
-                <div class="flex flex-col gap-3 justify-center max-w-sm mx-auto">
-                    <button id="buka-rekening-btn" class="mobile-button luxury-gradient text-white rounded-lg font-bold shadow-2xl hover:shadow-amber-500/25 transition-all duration-300 transform hover:scale-105 w-full" data-translate="open_account">
-                        Buka Rekening Premium
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-16">
+                    <button id="buka-rekening-btn" class="btn-corp">
+                        Request Private Access
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </button>
-                    <button id="konsultasi-btn" class="mobile-button glass-effect border-2 border-amber-300 text-amber-300 rounded-lg font-bold hover:bg-amber-300 hover:text-black transition-all duration-300 transform hover:scale-105 w-full" data-translate="free_consultation">
-                        Konsultasi Gratis
+                    <button id="konsultasi-btn" class="btn-corp-outline">
+                        Speak to an Advisor
                     </button>
                 </div>
-                
-                <!-- Crypto Partners Section -->
-                <div class="mt-16 pt-8 border-t border-white/20">
-                    <div class="text-center mb-8">
-                        <h4 class="text-lg md:text-xl font-semibold text-amber-200 mb-2" data-translate="crypto_partners">Mitra Cryptocurrency Terpercaya</h4>
-                        <p class="text-sm text-white/80" data-translate="crypto_partners_desc">Trading & Investment Cryptocurrency Premium</p>
+
+                <!-- Institutional Trust Bar -->
+                <div class="pt-10 border-t border-gray-200">
+                    <p class="text-xs uppercase-wide text-gray-500 mb-6">Regulated & Audited By</p>
+                    <div class="flex flex-wrap items-center gap-8 text-gray-400 font-bold text-sm">
+                        <span>FINMA</span>
+                        <span class="text-gray-300">|</span>
+                        <span>FCA</span>
+                        <span class="text-gray-300">|</span>
+                        <span>MAS</span>
+                        <span class="text-gray-300">|</span>
+                        <span>SEC</span>
+                        <span class="text-gray-300">|</span>
+                        <span>Deloitte Audit</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 divide-x divide-gray-800">
+                <div class="px-6 first:pl-0">
+                    <div class="text-xs uppercase-wide text-gray-500 mb-2">Assets Under Management</div>
+                    <div class="text-4xl font-bold tracking-tight">$<span>128.4B</span></div>
+                </div>
+                <div class="px-6">
+                    <div class="text-xs uppercase-wide text-gray-500 mb-2">Global Jurisdictions</div>
+                    <div class="text-4xl font-bold tracking-tight"><span>14</span></div>
+                </div>
+                <div class="px-6">
+                    <div class="text-xs uppercase-wide text-gray-500 mb-2">Average Client Tenure</div>
+                    <div class="text-4xl font-bold tracking-tight"><span>17</span> Yrs</div>
+                </div>
+                <div class="px-6 last:pr-0">
+                    <div class="text-xs uppercase-wide text-gray-500 mb-2">Institutional Rating</div>
+                    <div class="text-4xl font-bold tracking-tight" style="color: var(--brand-red)">AA+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise / Services -->
+    <section id="expertise" class="py-20 lg:py-32 bg-gray-50 border-corp-bottom">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-12 mb-20">
+                <div class="md:col-span-4">
+                    <span class="text-xs uppercase-wide text-red-600 font-bold">Our Expertise</span>
+                </div>
+                <div class="md:col-span-8">
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+                        Institutional infrastructure for private capital.
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        We bridge the gap between traditional private banking and the digital asset economy, offering bespoke financial solutions structured for capital preservation and asymmetric growth.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200">
+                <div class="corp-card p-10 reveal">
+                    <div class="w-12 h-12 mb-6 border-2 border-black flex items-center justify-center">
+                        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 uppercase-wide">Capital Preservation</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Multi-jurisdictional structuring with fidelity bonds and institutional-grade custody up to $500M.</p>
+                </div>
+                <div class="corp-card p-10 reveal">
+                    <div class="w-12 h-12 mb-6 border-2 border-black flex items-center justify-center">
+                        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 uppercase-wide">Digital Asset Integration</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Seamless OTC trading and cold-storage custody for digital assets with prime brokerage liquidity.</p>
+                </div>
+                <div class="corp-card p-10 reveal">
+                    <div class="w-12 h-12 mb-6 border-2 border-black flex items-center justify-center">
+                        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 uppercase-wide">Family Office Services</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Comprehensive succession planning, philanthropic structuring, and intergenerational wealth transfer.</p>
+                </div>
+                <div class="corp-card p-10 reveal">
+                    <div class="w-12 h-12 mb-6 border-2 border-black flex items-center justify-center">
+                        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 uppercase-wide">Corporate Credit</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Bespoke lending facilities against illiquid assets, real estate, and digital treasuries at SOFR + margins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Tiers -->
+    <section id="membership" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-12 mb-16">
+                <div class="md:col-span-4">
+                    <span class="text-xs uppercase-wide text-red-600 font-bold">Discretionary Tiers</span>
+                </div>
+                <div class="md:col-span-8">
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-6">A hierarchy of privilege.</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Dedicated relationship management and institutional access scaled to the complexity of your wealth.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-px bg-gray-200 border border-gray-200">
+                <div class="corp-card-dark p-10 reveal">
+                    <span class="text-xs uppercase-wide text-gray-500 mb-4 block">Tier I</span>
+                    <h4 class="text-2xl font-bold mb-2 text-white">Private Client</h4>
+                    <p class="text-gray-500 text-sm mb-8 pb-8 border-b border-gray-800">Minimum $1M Investable Assets</p>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Dedicated Wealth Advisor</li>
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Institutional Mutual Funds Access</li>
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Standard Custody Services</li>
+                    </ul>
+                </div>
+                <div class="corp-card-dark p-10 reveal relative" style="background: #111; border-color: var(--brand-red);">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-4 py-1 uppercase-wide">Most Preferred</div>
+                    <span class="text-xs uppercase-wide text-red-600 mb-4 block">Tier II</span>
+                    <h4 class="text-2xl font-bold mb-2 text-white">Global Reserve</h4>
+                    <p class="text-gray-500 text-sm mb-8 pb-8 border-b border-gray-800">Minimum $25M Investable Assets</p>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Multi-Jurisdictional Structuring</li>
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> OTC Digital Asset Desk Access</li>
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Lombard Lending Facilities</li>
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> 24/7 Concierge Banking</li>
+                    </ul>
+                </div>
+                <div class="corp-card-dark p-10 reveal">
+                    <span class="text-xs uppercase-wide text-gray-500 mb-4 block">Tier III</span>
+                    <h4 class="text-2xl font-bold mb-2 text-white">Family Office</h4>
+                    <p class="text-gray-500 text-sm mb-8 pb-8 border-b border-gray-800">By Invitation Only</p>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Bespoke Fund Creation</li>
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Direct Private Equity Co-Invest</li>
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Philanthropic Advisory Board</li>
+                        <li class="flex gap-3"><span class="text-red-600">✓</span> Cross-Border Tax Optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wealth Structuring Simulator -->
+    <section class="py-20 lg:py-32 bg-gray-50 border-corp-top border-corp-bottom">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-12 mb-16">
+                <div class="md:col-span-4">
+                    <span class="text-xs uppercase-wide text-red-600 font-bold">Portfolio Engineering</span>
+                </div>
+                <div class="md:col-span-8">
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-6">Institutional Allocation Simulator</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Model your portfolio using the same Modern Portfolio Theory (MPT) frameworks utilized by our sovereign wealth fund clients.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border border-black p-8 md:p-12 grid md:grid-cols-12 gap-8 items-center bg-white">
+                <div class="md:col-span-5">
+                    <label class="block text-xs uppercase-wide text-gray-500 mb-2">Deployable Capital</label>
+                    <input type="text" id="investment-display" value="$5,000,000" readonly class="w-full bg-transparent border-b-2 border-black py-2 text-3xl font-bold focus:outline-none mb-6">
+                    <input type="range" id="investment-slider" min="100000" max="50000000" value="5000000" step="100000" class="w-full">
+                    <div class="flex justify-between text-xs uppercase-wide text-gray-400 mt-2">
+                        <span>$100K</span><span>$50M+</span>
+                    </div>
+                </div>
+                <div class="md:col-span-3 text-center hidden md:block">
+                    <div class="w-16 h-16 bg-black hexagon mx-auto flex items-center justify-center">
+                        <div class="w-14 h-14 bg-red-600 hexagon"></div>
+                    </div>
+                </div>
+                <div class="md:col-span-4 bg-black text-white p-8">
+                    <div class="text-xs uppercase-wide text-gray-400 mb-4">Projected Yield (Blended)</div>
+                    <div id="profit-display" class="text-4xl font-bold mb-2">8.42%</div>
+                    <div class="text-xs text-gray-500 mb-6">Target Internal Rate of Return (IRR)</div>
                     
-                    <!-- Crypto Logos Grid -->
-                    <div class="grid grid-cols-5 md:grid-cols-10 gap-4 items-center justify-items-center opacity-80 hover:opacity-100 transition-opacity duration-500">
-                        <!-- Ethereum -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/eth.png" alt="Ethereum" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
+                    <div class="space-y-3 border-t border-gray-800 pt-4">
+                        <div class="flex justify-between text-xs">
+                            <span class="uppercase-wide text-gray-400">Fixed Income</span>
+                            <span class="font-bold">45%</span>
                         </div>
-                        
-                        <!-- Aave -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/aave.png" alt="Aave" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
+                        <div class="flex justify-between text-xs">
+                            <span class="uppercase-wide text-gray-400">Global Equities</span>
+                            <span class="font-bold">30%</span>
                         </div>
-                        
-                        <!-- Uniswap -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/uniswap.png" alt="Uniswap" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
+                        <div class="flex justify-between text-xs">
+                            <span class="uppercase-wide text-gray-400">Digital Assets</span>
+                            <span class="font-bold">15%</span>
                         </div>
-                        
-                        <!-- SushiSwap -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/sushiswap.png" alt="SushiSwap" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
-                        </div>
-                        
-                        <!-- 1inch -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/1inch.png" alt="1inch" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
-                        </div>
-                        
-                        <!-- USDC -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/usdc.png" alt="USDC" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
-                        </div>
-                        
-                        <!-- DAI -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/dai.png" alt="DAI" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
-                        </div>
-                        
-                        <!-- BNB -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/bnb.png" alt="BNB" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
-                        </div>
-                        
-                        <!-- Litecoin -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/ltc.png" alt="Litecoin" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
-                        </div>
-                        
-                        <!-- Chainlink -->
-                        <div class="crypto-container w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300">
-                            <img src="https://raw.githubusercontent.com/kongali1720/flash_loan_arbitrage_strategy/main/chainlink.png" alt="Chainlink" class="crypto-logo-img w-8 h-8 md:w-10 md:h-10 drop-shadow-lg transition-all duration-300" />
+                        <div class="flex justify-between text-xs">
+                            <span class="uppercase-wide text-gray-400">Alternatives</span>
+                            <span class="font-bold">10%</span>
                         </div>
                     </div>
-                    
-                    <!-- Animated scrolling text -->
-                    <div class="mt-6 overflow-hidden">
-                        <div class="whitespace-nowrap animate-marquee">
-                            <span class="text-amber-300 font-medium text-sm mx-8">🚀 Trading Crypto Premium</span>
-                            <span class="text-white/80 text-sm mx-8">💎 Investment Digital Assets</span>
-                            <span class="text-amber-300 font-medium text-sm mx-8">🔥 Portfolio Management</span>
-                            <span class="text-white/80 text-sm mx-8">⭐ Crypto Advisory Services</span>
-                            <span class="text-amber-300 font-medium text-sm mx-8">🎯 DeFi Solutions</span>
-                            <span class="text-white/80 text-sm mx-8">💰 Staking Rewards</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- WEALTH CALCULATOR INTERACTIVE -->
-                <div class="mt-16 pt-8 border-t border-white/20">
-                    <div class="calculator-glow bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-amber-300/30">
-                        <div class="text-center mb-6">
-                            <h4 class="text-2xl font-bold text-amber-300 mb-2">💰 Kalkulator Keuntungan Premium</h4>
-                            <p class="text-white/80">Hitung potensi profit Anda dengan kongBANK!</p>
-                        </div>
-                        
-                        <div class="flex flex-col md:flex-row items-center gap-6">
-                            <div class="flex-1 w-full">
-                                <label class="block text-white font-semibold mb-2">Investasi Awal:</label>
-                                <div class="relative">
-                                    <span class="absolute left-3 top-3 text-amber-300 font-bold">$</span>
-                                    <input type="range" id="investment-slider" min="1000" max="1000000" value="50000" 
-                                           class="w-full h-3 bg-white/20 rounded-lg appearance-none cursor-pointer mb-2">
-                                    <input type="text" id="investment-display" value="$50,000" 
-                                           class="w-full bg-white/10 border border-amber-300/50 rounded-lg py-3 pl-8 pr-4 text-white font-bold text-center"
-                                           readonly>
-                                </div>
-                            </div>
-                            
-                            <div class="text-center">
-                                <div class="text-6xl mb-2">🚀</div>
-                                <div class="text-amber-300 font-bold">1 TAHUN</div>
-                            </div>
-                            
-                            <div class="flex-1 w-full text-center">
-                                <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-6">
-                                    <div class="text-white/80 text-sm mb-2">Total Keuntungan:</div>
-                                    <div id="profit-display" class="text-3xl font-bold text-white mb-2">$78,500</div>
-                                    <div class="text-green-200 text-sm">
-                                        ROI: <span id="roi-display" class="font-bold">+57%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center mt-6">
-                            <button id="calculator-cta" class="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 shadow-2xl">
-                                🏆 Mulai Investasi Premium Sekarang!
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white to-transparent"></div>
-    </section>
-
-    <!-- LIVE PROFIT COUNTER -->
-    <div class="bg-gradient-to-r from-green-600 to-green-700 text-white py-6">
-        <div class="container text-center">
-            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
-                <div class="text-center">
-                    <div class="text-sm opacity-80 mb-1">💰 Total Keuntungan Nasabah Hari Ini:</div>
-                    <div class="text-4xl font-bold">
-                        $<span id="live-profit-counter" class="profit-digit">12,847,693</span>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="text-sm opacity-80 mb-1">🎯 Nasabah Aktif Trading:</div>
-                    <div class="text-3xl font-bold">
-                        <span id="active-traders" class="profit-digit">15,234</span>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="text-sm opacity-80 mb-1">⭐ Rating Kepuasan:</div>
-                    <div class="text-3xl font-bold">
-                        <span class="profit-digit">99.8%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TESTIMONIAL CAROUSEL -->
-    <div class="bg-white py-12">
-        <div class="container">
-            <div class="text-center mb-8">
-                <h3 class="text-3xl font-bold text-gray-800 mb-4">🌟 Testimoni Nasabah Premium</h3>
-                <p class="text-gray-600">Cerita sukses dari jutawan kongBANK</p>
-            </div>
-            
-            <div class="relative max-w-4xl mx-auto">
-                <div id="testimonial-container" class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-3xl p-8 shadow-2xl">
-                    <div class="testimonial-active text-center">
-                        <div class="flex justify-center mb-6">
-                            <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-amber-400">
-                                <img id="testimonial-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Customer" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <blockquote class="text-xl md:text-2xl font-medium text-gray-800 mb-6 leading-relaxed">
-                            "<span id="testimonial-text">kongBANK mengubah hidup saya! Profit $150K dalam 8 bulan dengan wealth management premium mereka. Tim advisor sangat profesional!</span>"
-                        </blockquote>
-                        <div class="flex justify-center mb-4">
-                            <div class="flex space-x-1">
-                                <span class="text-3xl">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                        <cite class="text-lg font-bold text-amber-600">
-                            <span id="testimonial-name">David Chen</span>
-                        </cite>
-                        <p class="text-gray-600 mt-1">
-                            <span id="testimonial-title">CEO Tech Startup</span> • <span id="testimonial-location">Jakarta</span>
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Testimonial Navigation Dots -->
-                <div class="flex justify-center mt-6 space-x-2">
-                    <button class="testimonial-dot w-3 h-3 rounded-full bg-amber-400" data-index="0"></button>
-                    <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300" data-index="1"></button>
-                    <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300" data-index="2"></button>
-                    <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300" data-index="3"></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Section -->
-    <section id="tentang" class="py-16 about-bg relative">
-        <div class="container">
-            <div class="text-center mobile-margin mb-12">
-                <h3 class="section-title font-bold text-gray-800 mb-4" data-translate="about_title">Tentang kong<span class="text-amber-600">BANK</span></h3>
-                <p class="section-subtitle text-gray-700 max-w-2xl mx-auto leading-relaxed" data-translate="about_description">
-                    Dengan pengalaman lebih dari 25 tahun, kongBANK telah menjadi mitra terpercaya 
-                    dalam memberikan layanan perbankan mewah dan berkualitas tinggi.
-                </p>
-            </div>
-            
-            <div class="mobile-grid grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
-                <div class="text-center card-hover glass-effect bg-white/80 mobile-padding p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl border border-amber-200">
-                    <div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-6 sm:mb-8 rounded-2xl overflow-hidden shadow-xl" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.85), rgba(245, 158, 11, 0.85)), url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=400&auto=format&fit=crop') center/cover; background-size: cover;">
-                        <div class="w-full h-full bg-amber-600/70 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800" data-translate="trusted">Terpercaya</h4>
-                    <p class="mobile-text text-gray-600 text-base sm:text-lg leading-relaxed" data-translate="trusted_desc">Lebih dari 1 juta nasabah premium mempercayai layanan perbankan eksklusif kami</p>
-                </div>
-                
-                <div class="text-center card-hover glass-effect bg-white/80 mobile-padding p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl border border-amber-200">
-                    <div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-6 sm:mb-8 rounded-2xl overflow-hidden shadow-xl" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.85), rgba(29, 78, 216, 0.85)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop') center/cover; background-size: cover;">
-                        <div class="w-full h-full bg-blue-600/70 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800" data-translate="innovative">Inovatif</h4>
-                    <p class="mobile-text text-gray-600 text-base sm:text-lg leading-relaxed" data-translate="innovative_desc">Teknologi perbankan digital terdepan dengan AI untuk kemudahan transaksi premium</p>
-                </div>
-                
-                <div class="text-center card-hover glass-effect bg-white/80 mobile-padding p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl border border-amber-200">
-                    <div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-6 sm:mb-8 rounded-2xl overflow-hidden shadow-xl" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.85), rgba(22, 163, 74, 0.85)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop') center/cover; background-size: cover;">
-                        <div class="w-full h-full bg-green-600/70 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800" data-translate="professional">Profesional</h4>
-                    <p class="mobile-text text-gray-600 text-base sm:text-lg leading-relaxed" data-translate="professional_desc">Tim ahli bersertifikat internasional siap melayani kebutuhan finansial eksklusif Anda</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="layanan" class="py-12 sm:py-20 md:py-32 premium-bg relative">
-        <div class="container mx-auto px-3 sm:px-6">
-            <div class="text-center mobile-margin mb-8 sm:mb-12 md:mb-20">
-                <h3 class="section-title text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 md:mb-6" data-translate="services_title">Layanan Premium Kami</h3>
-                <p class="section-subtitle text-sm sm:text-lg md:text-2xl text-gray-300 leading-relaxed px-2 sm:px-4" data-translate="services_description">Solusi perbankan mewah dan eksklusif untuk segala kebutuhan finansial Anda</p>
+    <!-- Global Macro Insights Ticker -->
+    <section id="insights" class="bg-black text-white py-12 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+            <div class="flex items-center gap-4">
+                <span class="text-xs uppercase-wide text-red-600 font-bold">Global Macro Desk</span>
+                <div class="flex-1 h-px bg-gray-800"></div>
             </div>
-            
-            <div class="mobile-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                <div class="glass-effect bg-white/10 mobile-padding p-6 sm:p-8 rounded-2xl shadow-2xl card-hover border border-amber-500/30 text-center">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.85), rgba(245, 158, 11, 0.85)), url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=400&auto=format&fit=crop') center/cover; background-size: cover;">
-                        <div class="w-full h-full bg-amber-600/70 flex items-center justify-center">
-                            <svg class="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V17H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-amber-300" data-translate="premium_savings">Tabungan Premium</h4>
-                    <p class="mobile-text text-gray-300 text-sm sm:text-base" data-translate="premium_savings_desc">Berbagai pilihan tabungan eksklusif dengan bunga tertinggi dan fasilitas VIP</p>
-                </div>
-                
-                <div class="glass-effect bg-white/10 mobile-padding p-6 sm:p-8 rounded-2xl shadow-2xl card-hover border border-amber-500/30 text-center">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.85), rgba(147, 51, 234, 0.85)), url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=400&auto=format&fit=crop') center/cover; background-size: cover;">
-                        <div class="w-full h-full bg-purple-600/70 flex items-center justify-center">
-                            <svg class="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M2,17H22V19H2V17M2,7H22V16H2V7M4,9V14H5V10H7V9H4M8.5,9A0.5,0.5 0 0,0 8,9.5V10.5A0.5,0.5 0 0,0 8.5,11H10.5A0.5,0.5 0 0,0 11,10.5V9.5A0.5,0.5 0 0,0 10.5,9H8.5M13,14H20V9H13V14M18,11.5V12.5H15V11.5H18Z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-amber-300" data-translate="platinum_credit">Kredit Platinum</h4>
-                    <p class="mobile-text text-gray-300 text-sm sm:text-base" data-translate="platinum_credit_desc">Solusi kredit platinum untuk kebutuhan premium dengan limit tinggi dan proses express</p>
-                </div>
-                
-                <div class="glass-effect bg-white/10 mobile-padding p-6 sm:p-8 rounded-2xl shadow-2xl card-hover border border-amber-500/30 text-center">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(5, 150, 105, 0.85)), url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=400&auto=format&fit=crop') center/cover; background-size: cover;">
-                        <div class="w-full h-full bg-emerald-600/70 flex items-center justify-center">
-                            <svg class="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M5,6.41L6.41,5L17,15.59V9H19V19H9V17H15.59L5,6.41Z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-amber-300" data-translate="wealth_management">Wealth Management</h4>
-                    <p class="mobile-text text-gray-300 text-sm sm:text-base" data-translate="wealth_management_desc">Manajemen kekayaan eksklusif dengan advisor personal untuk investasi optimal</p>
-                </div>
-                
-                <div class="glass-effect bg-white/10 mobile-padding p-6 sm:p-8 rounded-2xl shadow-2xl card-hover border border-amber-500/30 text-center">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.85), rgba(79, 70, 229, 0.85)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=400&auto=format&fit=crop') center/cover; background-size: cover;">
-                        <div class="w-full h-full bg-indigo-600/70 flex items-center justify-center">
-                            <svg class="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21C5,22.11 5.89,23 7,23H17C18.11,23 19,22.11 19,21V3C19,1.89 18.11,1 17,1M16,13H13V16H11V13H8V11H11V8H13V11H16V13Z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-amber-300" data-translate="private_banking">Private Banking</h4>
-                    <p class="mobile-text text-gray-300 text-sm sm:text-base" data-translate="private_banking_desc">Aplikasi banking eksklusif dengan fitur AI dan concierge service 24/7</p>
-                </div>
+        </div>
+        <div class="ticker-track-reverse">
+            <div class="flex items-center gap-16 px-8 whitespace-nowrap text-sm">
+                <span class="flex items-center gap-3"><span class="text-red-600 font-bold text-xs">FED WATCH</span> Rate cut expectations pushed to Q3 amid sticky core CPI.</span>
+                <span class="text-gray-600">|</span>
+                <span class="flex items-center gap-3"><span class="text-red-600 font-bold text-xs">DIGITAL ASSET</span> Spot ETF inflows surpass $4B in institutional reallocation.</span>
+                <span class="text-gray-600">|</span>
+                <span class="flex items-center gap-3"><span class="text-red-600 font-bold text-xs">FX MARKETS</span> CHF strength impacts European export yield curves.</span>
+                <span class="text-gray-600">|</span>
+                <span class="flex items-center gap-3"><span class="text-red-600 font-bold text-xs">PRIVATE EQUITY</span> Secondary buyout volume reaches decade high in Q1.</span>
+                <span class="text-gray-600">|</span>
+            </div>
+            <div class="flex items-center gap-16 px-8 whitespace-nowrap text-sm">
+                <span class="flex items-center gap-3"><span class="text-red-600 font-bold text-xs">FED WATCH</span> Rate cut expectations pushed to Q3 amid sticky core CPI.</span>
+                <span class="text-gray-600">|</span>
+                <span class="flex items-center gap-3"><span class="text-red-600 font-bold text-xs">DIGITAL ASSET</span> Spot ETF inflows surpass $4B in institutional reallocation.</span>
+                <span class="text-gray-600">|</span>
+                <span class="flex items-center gap-3"><span class="text-red-600 font-bold text-xs">FX MARKETS</span> CHF strength impacts European export yield curves.</span>
+                <span class="text-gray-600">|</span>
+                <span class="flex items-center gap-3"><span class="text-red-600 font-bold text-xs">PRIVATE EQUITY</span> Secondary buyout volume reaches decade high in Q1.</span>
+                <span class="text-gray-600">|</span>
             </div>
         </div>
     </section>
-
-    <!-- Statistics Section -->
-    <section class="py-12 sm:py-20 md:py-32 relative" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.85), rgba(245, 158, 11, 0.85)), url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1426&auto=format&fit=crop') center/cover; background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-black/30"></div>
-        <div class="container mx-auto px-3 sm:px-6 relative z-10">
-            <div class="text-center mobile-margin mb-6 sm:mb-10 md:mb-16">
-                <h3 class="section-title text-xl sm:text-3xl md:text-5xl font-bold text-white mb-2 sm:mb-3 md:mb-4 text-shadow">Pencapaian kong<span class="text-yellow-200">BANK</span></h3>
-                <p class="section-subtitle text-xs sm:text-base md:text-xl text-white/90 text-shadow px-2 sm:px-4">Prestasi yang membanggakan dalam memberikan layanan perbankan premium</p>
-            </div>
-            <div class="mobile-grid grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-12 text-center text-white">
-                <div class="glass-effect bg-white/10 mobile-padding p-4 sm:p-6 md:p-8 rounded-2xl backdrop-blur-lg border border-white/20">
-                    <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 text-shadow luxury-gradient bg-clip-text">1M+</div>
-                    <div class="mobile-text text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-shadow">Nasabah Premium</div>
-                </div>
-                <div class="glass-effect bg-white/10 mobile-padding p-4 sm:p-6 md:p-8 rounded-2xl backdrop-blur-lg border border-white/20">
-                    <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 text-shadow luxury-gradient bg-clip-text">150+</div>
-                    <div class="mobile-text text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-shadow">Cabang Mewah</div>
-                </div>
-                <div class="glass-effect bg-white/10 mobile-padding p-4 sm:p-6 md:p-8 rounded-2xl backdrop-blur-lg border border-white/20">
-                    <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 text-shadow luxury-gradient bg-clip-text">25+</div>
-                    <div class="mobile-text text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-shadow">Tahun Kepercayaan</div>
-                </div>
-                <div class="glass-effect bg-white/10 mobile-padding p-4 sm:p-6 md:p-8 rounded-2xl backdrop-blur-lg border border-white/20">
-                    <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 text-shadow luxury-gradient bg-clip-text">99.9%</div>
-                    <div class="mobile-text text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-shadow">Sistem Terbaik</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- URGENCY OFFERS SECTION -->
-    <div class="bg-gradient-to-r from-red-700 to-red-800 text-white py-16 relative overflow-hidden">
-        <div class="absolute inset-0">
-            <div class="float-element absolute top-10 left-10 text-4xl">💎</div>
-            <div class="float-element absolute top-20 right-20 text-3xl">🚀</div>
-            <div class="float-element absolute bottom-20 left-1/4 text-4xl">⭐</div>
-        </div>
-        
-        <div class="container text-center relative z-10">
-            <div class="urgency-pulse bg-white text-red-700 inline-block px-6 py-3 rounded-full font-bold text-xl mb-6">
-                ⚡ PENAWARAN TERBATAS ⚡
-            </div>
-            
-            <h3 class="text-4xl md:text-6xl font-bold mb-6">
-                Buka Rekening Hari Ini!
-            </h3>
-            
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div class="urgency-pulse bg-white/10 rounded-2xl p-6 backdrop-blur-lg border border-white/20">
-                    <div class="text-6xl mb-4">🎁</div>
-                    <h4 class="text-2xl font-bold mb-2">Bonus $1,000</h4>
-                    <p>Untuk deposit pertama minimal $10K</p>
-                </div>
-                
-                <div class="urgency-pulse bg-white/10 rounded-2xl p-6 backdrop-blur-lg border border-white/20" style="animation-delay: 0.5s">
-                    <div class="text-6xl mb-4">💳</div>
-                    <h4 class="text-2xl font-bold mb-2">Kartu Platinum</h4>
-                    <p>Gratis biaya tahunan (senilai $500)</p>
-                </div>
-                
-                <div class="urgency-pulse bg-white/10 rounded-2xl p-6 backdrop-blur-lg border border-white/20" style="animation-delay: 1s">
-                    <div class="text-6xl mb-4">👨‍💼</div>
-                    <h4 class="text-2xl font-bold mb-2">Personal Advisor</h4>
-                    <p>1 bulan konsultasi gratis ($2,000 value)</p>
-                </div>
-            </div>
-            
-            <div class="text-2xl font-bold mb-4">
-                ⏰ Penawaran berakhir dalam: <span id="offer-countdown" class="countdown-blink text-yellow-300">47:23:15</span>
-            </div>
-            
-            <button id="claim-offer-btn" class="urgency-pulse bg-yellow-400 text-black px-12 py-6 rounded-2xl font-bold text-2xl hover:scale-110 transition-all duration-300 shadow-2xl">
-                🏆 KLAIM SEKARANG - HEMAT $3,500!
-            </button>
-        </div>
-    </div>
 
     <!-- Contact Section -->
-    <section id="kontak" class="py-12 sm:py-20 md:py-32 bg-white relative" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.92)), url('https://images.unsplash.com/photo-1549547719-cc55edf4635a?q=80&w=1470&auto=format&fit=crop') center/cover; background-size: cover; background-position: center;">
-        <div class="container mx-auto px-3 sm:px-6">
-            <div class="text-center mobile-margin mb-8 sm:mb-12 md:mb-20">
-                <h3 class="section-title text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-3 sm:mb-4 md:mb-6">Hubungi kong<span class="text-amber-600">BANK</span></h3>
-                <p class="section-subtitle text-sm sm:text-lg md:text-2xl text-gray-700 leading-relaxed px-2 sm:px-4">Tim customer service premium kami siap melayani Anda dengan pelayanan eksklusif</p>
+    <section id="kontak" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-12 mb-16">
+                <div class="md:col-span-4">
+                    <span class="text-xs uppercase-wide text-red-600 font-bold">Global Network</span>
+                </div>
+                <div class="md:col-span-8">
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-6">Connect with a Wealth Advisor</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">Our relationship managers operate across key financial hubs, ensuring localized expertise backed by global infrastructure. Strict confidentiality is guaranteed.</p>
+                </div>
             </div>
-            
-            <div class="mobile-grid grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
-                <a href="https://wa.me/447440014278" target="_blank" class="text-center card-hover glass-effect bg-white/80 mobile-padding p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl border border-amber-200 hover:border-green-400 transition-all duration-300">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8 rounded-2xl flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 shadow-xl">
-                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.786"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">VIP WhatsApp</h4>
-                    <p class="text-amber-600 text-lg sm:text-xl font-bold mb-2">+44 7440014278</p>
-                    <p class="mobile-text text-gray-600 text-sm sm:text-base md:text-lg">Klik untuk chat langsung</p>
-                    <div class="mt-4">
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                            24/7 Available
-                        </span>
-                    </div>
+
+            <div class="grid md:grid-cols-3 gap-px bg-gray-200 border border-gray-200">
+                <a href="https://wa.me/447440014278" target="_blank" class="block p-10 hover:bg-black hover:text-white transition-colors duration-300 group">
+                    <h4 class="text-xs uppercase-wide text-gray-400 group-hover:text-red-600 mb-4">Priority WhatsApp</h4>
+                    <p class="text-xl font-bold mb-2">+44 7440014278</p>
+                    <p class="text-sm text-gray-500 group-hover:text-gray-400">Direct line to relationship desk</p>
                 </a>
-                
-                <a href="mailto:kongali1720@younext.cloud" class="text-center card-hover glass-effect bg-white/80 mobile-padding p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl border border-amber-200 hover:border-blue-400 transition-all duration-300">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8 rounded-2xl flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 shadow-xl">
-                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">Email Premium</h4>
-                    <p class="mobile-text text-gray-600 text-sm sm:text-base md:text-lg mb-2">kongali1720@younext.cloud</p>
-                    <p class="mobile-text text-gray-600 text-sm sm:text-base md:text-lg">Klik untuk kirim email</p>
-                    <div class="mt-4">
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                            Exclusive Service
-                        </span>
-                    </div>
+                <a href="mailto:kongali1720@younext.cloud" class="block p-10 hover:bg-black hover:text-white transition-colors duration-300 group">
+                    <h4 class="text-xs uppercase-wide text-gray-400 group-hover:text-red-600 mb-4">Institutional Email</h4>
+                    <p class="text-xl font-bold mb-2 break-all">kongali1720@younext.cloud</p>
+                    <p class="text-sm text-gray-500 group-hover:text-gray-400">PGP encrypted communication</p>
                 </a>
-                
-                <div class="text-center card-hover glass-effect bg-white/80 mobile-padding p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl border border-amber-200">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8 rounded-2xl flex items-center justify-center bg-gradient-to-r from-amber-500 to-amber-600 shadow-xl">
-                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">Kantor Pusat</h4>
-                    <p class="mobile-text text-gray-600 text-sm sm:text-base md:text-lg">Jl. Sudirman No. 123</p>
-                    <p class="mobile-text text-gray-600 text-sm sm:text-base md:text-lg">Jakarta Pusat 10220</p>
-                    <div class="mt-4">
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
-                            Head Office
-                        </span>
-                    </div>
+                <div class="p-10">
+                    <h4 class="text-xs uppercase-wide text-gray-400 mb-4">Global Headquarters</h4>
+                    <p class="text-xl font-bold mb-2">Zurich · Singapore · London</p>
+                    <p class="text-sm text-gray-500">Schedule an in-person briefing</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="premium-bg text-white py-12 sm:py-16 md:py-20 relative" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.92)), url('https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1527&auto=format&fit=crop') center/cover; background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="container mx-auto px-3 sm:px-6 relative z-10">
-            <div class="grid md:grid-cols-4 gap-12">
-                <div>
-                    <div class="flex items-center mb-6">
-                        <h4 class="text-4xl font-bold">
-                            <span class="text-white">kong</span><span class="text-amber-400">BANK</span>
-                        </h4>
+    <footer class="bg-black text-white pt-20 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white hexagon flex items-center justify-center">
+                            <div class="w-8 h-8 bg-black hexagon flex items-center justify-center">
+                                <span class="font-bold text-white text-sm">K</span>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-bold tracking-tight">kong<span style="color: var(--brand-red)">BANK</span></h4>
                     </div>
-                    <p class="text-gray-300 text-lg leading-relaxed">Bank mewah terpercaya dengan layanan perbankan eksklusif dan inovatif untuk masa depan yang gemilang.</p>
-                    <div class="mt-6 flex space-x-2">
-                        <div class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M5,16L3,5L8.5,12L12,4L15.5,12L21,5L19,16H5Z"/>
-                            </svg>
-                        </div>
-                        <div class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12,2L15.09,8.26L22,9L17,14L18.18,21L12,17.77L5.82,21L7,14L2,9L8.91,8.26L12,2Z"/>
-                            </svg>
-                        </div>
-                        <div class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z"/>
-                            </svg>
-                        </div>
-                    </div>
+                    <p class="text-gray-500 text-sm">Global Private Wealth Management.</p>
                 </div>
-                
                 <div>
-                    <h5 class="text-2xl font-bold mb-6 text-amber-400">Layanan Premium</h5>
-                    <ul class="space-y-3">
-                        <li><a href="#layanan" class="text-gray-300 hover:text-amber-400 transition-all duration-300 text-lg">Tabungan Premium</a></li>
-                        <li><a href="#layanan" class="text-gray-300 hover:text-amber-400 transition-all duration-300 text-lg">Kredit Platinum</a></li>
-                        <li><a href="#layanan" class="text-gray-300 hover:text-amber-400 transition-all duration-300 text-lg">Wealth Management</a></li>
-                        <li><a href="#layanan" class="text-gray-300 hover:text-amber-400 transition-all duration-300 text-lg">Private Banking</a></li>
+                    <h5 class="text-xs uppercase-wide text-white mb-6 font-bold">Expertise</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#expertise" class="text-gray-500 hover:text-red-600 transition-colors">Wealth Management</a></li>
+                        <li><a href="#expertise" class="text-gray-500 hover:text-red-600 transition-colors">Digital Assets</a></li>
+                        <li><a href="#expertise" class="text-gray-500 hover:text-red-600 transition-colors">Family Office</a></li>
                     </ul>
                 </div>
-                
                 <div>
-                    <h5 class="text-2xl font-bold mb-6 text-amber-400">Informasi</h5>
-                    <ul class="space-y-3">
-                        <li><a href="#tentang" class="text-gray-300 hover:text-amber-400 transition-all duration-300 text-lg">Tentang Kami</a></li>
-                        <li><a href="#tentang" class="text-gray-300 hover:text-amber-400 transition-all duration-300 text-lg">Karir Eksklusif</a></li>
-                        <li><a href="#tentang" class="text-gray-300 hover:text-amber-400 transition-all duration-300 text-lg">Berita Premium</a></li>
-                        <li><a href="#kontak" class="text-gray-300 hover:text-amber-400 transition-all duration-300 text-lg">Hubungi Kami</a></li>
+                    <h5 class="text-xs uppercase-wide text-white mb-6 font-bold">Institution</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="text-gray-500 hover:text-red-600 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-red-600 transition-colors">Regulatory Profile</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-red-600 transition-colors">Risk Management</a></li>
                     </ul>
                 </div>
-                
                 <div>
-                    <h5 class="text-2xl font-bold mb-6 text-amber-400">Bergabung dengan Kami</h5>
-                    <div class="flex space-x-4 mb-6">
-                        <a href="https://facebook.com" target="_blank" class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-xl hover:bg-blue-700">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="https://twitter.com" target="_blank" class="w-14 h-14 bg-sky-500 rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-xl hover:bg-sky-600">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                            </svg>
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" class="w-14 h-14 bg-blue-700 rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-xl hover:bg-blue-800">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                        <a href="https://instagram.com" target="_blank" class="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-xl">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=NVLM6wgtVuY&list=RDPaRyz_hajs0&index=2" target="_blank" class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-xl hover:bg-red-700">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <a href="https://wa.me/447440014278" target="_blank" class="glass-effect bg-white/10 p-4 rounded-xl border border-amber-500/30 hover:border-green-400 transition-all duration-300 block">
-                        <p class="text-amber-300 font-semibold">VIP Customer Service</p>
-                        <p class="text-white text-lg">+44 7440014278</p>
-                        <p class="text-gray-300">Klik untuk WhatsApp</p>
-                    </a>
+                    <h5 class="text-xs uppercase-wide text-white mb-6 font-bold">Legal</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="text-gray-500 hover:text-red-600 transition-colors">Terms of Use</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-red-600 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-red-600 transition-colors">Disclosures</a></li>
+                    </ul>
                 </div>
             </div>
-            
-            <div class="border-t border-amber-500/30 mt-12 pt-8 text-center">
-                <p class="text-gray-300 text-lg">&copy; 2025 <span class="text-white">kong</span><span class="text-amber-400">BANK</span>. Semua hak dilindungi. | Syarat & Ketentuan Premium | Kebijakan Privasi Eksklusif</p>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-600">© 2025 kongBANK AG. All rights reserved. Regulated by FINMA, FCA, and MAS.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-600 hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#" class="text-gray-600 hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+                    <a href="#" class="text-gray-600 hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- WHATSAPP WIDGET -->
-    <div id="whatsapp-widget" class="fixed bottom-6 left-6 z-50">
-        <div class="whatsapp-bounce bg-green-500 rounded-full p-4 shadow-2xl cursor-pointer hover:scale-110 transition-all duration-300" onclick="openWhatsAppVIP()">
-            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.786"/>
-            </svg>
-        </div>
-        <div class="mt-2 bg-white rounded-lg shadow-lg p-3 max-w-xs">
-            <div class="text-sm font-semibold text-gray-800">💬 Chat VIP Support</div>
-            <div class="text-xs text-gray-600">🟢 Online - Response: 30 detik</div>
-        </div>
+    <!-- Floating Support -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="window.open('https://wa.me/447440014278', '_blank')" class="w-14 h-14 bg-black border-2 border-white shadow-2xl flex items-center justify-center hover:bg-red-600 transition-colors">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.786"/></svg>
+        </button>
     </div>
 
-    <!-- SOCIAL PROOF NOTIFICATIONS -->
-    <div id="social-notifications" class="fixed top-1/2 right-0 transform -translate-y-1/2 z-40 space-y-4">
-        <!-- Notifications will be dynamically added here -->
-    </div>
+    <!-- Social Proof Notifications -->
+    <div id="social-notifications" class="fixed top-20 right-4 z-40 space-y-3 max-w-xs"></div>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-14 h-14 luxury-gradient rounded-full shadow-2xl flex items-center justify-center text-white transition-all duration-500 transform scale-0 opacity-0 hover:scale-110 hover:shadow-amber-500/25 z-50 group">
-        <svg class="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-        </svg>
-        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-    </button>
-
-    <script type="module">
-        // Multi-language translations
-        const translations = {
-            id: {
-                // Navigation
-                nav_home: "Beranda",
-                nav_about: "Tentang Kami", 
-                nav_services: "Layanan",
-                nav_contact: "Kontak",
-                login: "Login",
-                select_language: "Pilih Bahasa:",
-                
-                // Hero Section
-                tagline: "Premier Financial Institution",
-                welcome: "Selamat Datang",
-                premium_excellence: "Premium Banking Excellence",
-                hero_description: "Bergabunglah dengan lebih dari 1 juta nasabah premium yang mempercayai kongBANK untuk solusi finansial eksklusif, investasi berkelas dunia, dan layanan concierge 24/7 yang tak terbanding.",
-                open_account: "Buka Rekening Premium",
-                free_consultation: "Konsultasi Gratis",
-                
-                // About Section
-                about_title: "Tentang kongBANK",
-                about_description: "Dengan pengalaman lebih dari 25 tahun, kongBANK telah menjadi mitra terpercaya dalam memberikan layanan perbankan mewah dan berkualitas tinggi.",
-                trusted: "Terpercaya",
-                trusted_desc: "Lebih dari 1 juta nasabah premium mempercayai layanan perbankan eksklusif kami",
-                innovative: "Inovatif", 
-                innovative_desc: "Teknologi perbankan digital terdepan dengan AI untuk kemudahan transaksi premium",
-                professional: "Profesional",
-                professional_desc: "Tim ahli bersertifikat internasional siap melayani kebutuhan finansial eksklusif Anda",
-                
-                // Services Section
-                services_title: "Layanan Premium Kami",
-                services_description: "Solusi perbankan mewah dan eksklusif untuk segala kebutuhan finansial Anda",
-                premium_savings: "Tabungan Premium",
-                premium_savings_desc: "Berbagai pilihan tabungan eksklusif dengan bunga tertinggi dan fasilitas VIP",
-                platinum_credit: "Kredit Platinum",
-                platinum_credit_desc: "Solusi kredit platinum untuk kebutuhan premium dengan limit tinggi dan proses express",
-                wealth_management: "Wealth Management",
-                wealth_management_desc: "Manajemen kekayaan eksklusif dengan advisor personal untuk investasi optimal",
-                private_banking: "Private Banking",
-                private_banking_desc: "Aplikasi banking eksklusif dengan fitur AI dan concierge service 24/7",
-                
-                // Statistics
-                stats_title: "Pencapaian kongBANK",
-                stats_description: "Prestasi yang membanggakan dalam memberikan layanan perbankan premium",
-                premium_customers: "Nasabah Premium",
-                luxury_branches: "Cabang Mewah", 
-                years_trust: "Tahun Kepercayaan",
-                best_system: "Sistem Terbaik",
-                
-                // Contact Section
-                contact_title: "Hubungi kongBANK",
-                contact_description: "Tim customer service premium kami siap melayani Anda dengan pelayanan eksklusif",
-                vip_whatsapp: "VIP WhatsApp",
-                click_to_chat: "Klik untuk chat langsung",
-                available_24_7: "24/7 Available",
-                premium_email: "Email Premium",
-                click_to_email: "Klik untuk kirim email",
-                exclusive_service: "Exclusive Service",
-                head_office: "Kantor Pusat",
-                
-                // Footer
-                footer_description: "Bank mewah terpercaya dengan layanan perbankan eksklusif dan inovatif untuk masa depan yang gemilang.",
-                premium_services: "Layanan Premium",
-                information: "Informasi",
-                join_us: "Bergabung dengan Kami",
-                exclusive_careers: "Karir Eksklusif",
-                premium_news: "Berita Premium",
-                vip_customer_service: "VIP Customer Service",
-                click_whatsapp: "Klik untuk WhatsApp",
-                footer_rights: "Semua hak dilindungi. | Syarat & Ketentuan Premium | Kebijakan Privasi Eksklusif",
-                
-                // Crypto Section
-                crypto_partners: "Mitra Cryptocurrency Terpercaya",
-                crypto_partners_desc: "Trading & Investment Cryptocurrency Premium"
-            },
-            
-            en: {
-                // Navigation
-                nav_home: "Home",
-                nav_about: "About Us",
-                nav_services: "Services", 
-                nav_contact: "Contact",
-                login: "Login",
-                select_language: "Select Language:",
-                
-                // Hero Section
-                tagline: "Premier Financial Institution",
-                welcome: "Welcome",
-                premium_excellence: "Premium Banking Excellence",
-                hero_description: "Join over 1 million premium customers who trust kongBANK for exclusive financial solutions, world-class investments, and unparalleled 24/7 concierge services.",
-                open_account: "Open Premium Account",
-                free_consultation: "Free Consultation",
-                
-                // About Section
-                about_title: "About kongBANK",
-                about_description: "With over 25 years of experience, kongBANK has become a trusted partner in providing luxury and high-quality banking services.",
-                trusted: "Trusted",
-                trusted_desc: "Over 1 million premium customers trust our exclusive banking services",
-                innovative: "Innovative",
-                innovative_desc: "Leading digital banking technology with AI for premium transaction convenience", 
-                professional: "Professional",
-                professional_desc: "Internationally certified expert team ready to serve your exclusive financial needs",
-                
-                // Services Section
-                services_title: "Our Premium Services",
-                services_description: "Luxury and exclusive banking solutions for all your financial needs",
-                premium_savings: "Premium Savings",
-                premium_savings_desc: "Various exclusive savings options with highest interest rates and VIP facilities",
-                platinum_credit: "Platinum Credit",
-                platinum_credit_desc: "Platinum credit solutions for premium needs with high limits and express processing",
-                wealth_management: "Wealth Management", 
-                wealth_management_desc: "Exclusive wealth management with personal advisors for optimal investment",
-                private_banking: "Private Banking",
-                private_banking_desc: "Exclusive banking application with AI features and 24/7 concierge service",
-                
-                // Statistics
-                stats_title: "kongBANK Achievements",
-                stats_description: "Proud achievements in providing premium banking services",
-                premium_customers: "Premium Customers",
-                luxury_branches: "Luxury Branches",
-                years_trust: "Years of Trust",
-                best_system: "Best System",
-                
-                // Contact Section
-                contact_title: "Contact kongBANK",
-                contact_description: "Our premium customer service team is ready to serve you with exclusive service",
-                vip_whatsapp: "VIP WhatsApp",
-                click_to_chat: "Click to chat directly",
-                available_24_7: "24/7 Available",
-                premium_email: "Premium Email",
-                click_to_email: "Click to send email",
-                exclusive_service: "Exclusive Service",
-                head_office: "Head Office",
-                
-                // Footer
-                footer_description: "Trusted luxury bank with exclusive and innovative banking services for a glorious future.",
-                premium_services: "Premium Services",
-                information: "Information",
-                join_us: "Join Us",
-                exclusive_careers: "Exclusive Careers",
-                premium_news: "Premium News",
-                vip_customer_service: "VIP Customer Service",
-                click_whatsapp: "Click for WhatsApp",
-                footer_rights: "All rights reserved. | Premium Terms & Conditions | Exclusive Privacy Policy",
-                
-                // Crypto Section
-                crypto_partners: "Trusted Cryptocurrency Partners",
-                crypto_partners_desc: "Premium Cryptocurrency Trading & Investment"
-            },
-            
-            zh: {
-                // Navigation
-                nav_home: "主页",
-                nav_about: "关于我们",
-                nav_services: "服务",
-                nav_contact: "联系",
-                login: "登录",
-                select_language: "选择语言:",
-                
-                // Hero Section  
-                tagline: "顶级金融机构",
-                welcome: "欢迎",
-                premium_excellence: "顶级银行卓越服务",
-                hero_description: "加入超过100万名信赖kongBANK的高端客户，享受专属金融解决方案、世界级投资服务和无与伦比的24/7礼宾服务。",
-                open_account: "开设顶级账户",
-                free_consultation: "免费咨询",
-                
-                // About Section
-                about_title: "关于kongBANK", 
-                about_description: "凭借超过25年的经验，kongBANK已成为提供奢华高质量银行服务的可信合作伙伴。",
-                trusted: "值得信赖",
-                trusted_desc: "超过100万高端客户信赖我们的专属银行服务",
-                innovative: "创新",
-                innovative_desc: "领先的数字银行技术配合AI，为高端交易提供便利",
-                professional: "专业",
-                professional_desc: "国际认证的专家团队，随时为您的专属金融需求服务",
-                
-                // Services Section
-                services_title: "我们的顶级服务",
-                services_description: "满足您所有金融需求的奢华专属银行解决方案",
-                premium_savings: "顶级储蓄",
-                premium_savings_desc: "多种专属储蓄选择，最高利率和VIP设施",
-                platinum_credit: "白金信贷",
-                platinum_credit_desc: "满足高端需求的白金信贷解决方案，高额度快速处理",
-                wealth_management: "财富管理",
-                wealth_management_desc: "配备个人顾问的专属财富管理，实现最优投资",
-                private_banking: "私人银行",
-                private_banking_desc: "配备AI功能和24/7礼宾服务的专属银行应用",
-                
-                // Statistics
-                stats_title: "kongBANK成就",
-                stats_description: "在提供顶级银行服务方面的骄人成就",
-                premium_customers: "高端客户",
-                luxury_branches: "奢华分行",
-                years_trust: "年信赖历程",
-                best_system: "最佳系统",
-                
-                // Contact Section
-                contact_title: "联系kongBANK",
-                contact_description: "我们的高端客服团队随时为您提供专属服务",
-                vip_whatsapp: "VIP微信",
-                click_to_chat: "点击直接聊天",
-                available_24_7: "24/7在线",
-                premium_email: "高端邮箱",
-                click_to_email: "点击发送邮件",
-                exclusive_service: "专属服务",
-                head_office: "总部",
-                
-                // Footer
-                footer_description: "值得信赖的奢华银行，为美好未来提供专属创新银行服务。",
-                premium_services: "顶级服务",
-                information: "信息",
-                join_us: "加入我们",
-                exclusive_careers: "专属职业",
-                premium_news: "高端资讯",
-                vip_customer_service: "VIP客户服务",
-                click_whatsapp: "点击WhatsApp",
-                footer_rights: "版权所有。| 高端条款与条件 | 专属隐私政策",
-                
-                // Crypto Section
-                crypto_partners: "可信赖的加密货币合作伙伴",
-                crypto_partners_desc: "高端加密货币交易与投资"
-            },
-            
-            ja: {
-                // Navigation
-                nav_home: "ホーム",
-                nav_about: "会社概要",
-                nav_services: "サービス",
-                nav_contact: "お問い合わせ",
-                login: "ログイン",
-                select_language: "言語を選択:",
-                
-                // Hero Section
-                tagline: "プレミア金融機関",
-                welcome: "ようこそ",
-                premium_excellence: "プレミアムバンキングエクセレンス",
-                hero_description: "kongBANKを信頼する100万人以上のプレミアム顧客に加わり、独占的な金融ソリューション、世界クラスの投資、比類のない24/7コンシェルジュサービスをご利用ください。",
-                open_account: "プレミアム口座開設",
-                free_consultation: "無料相談",
-                
-                // About Section
-                about_title: "kongBANKについて",
-                about_description: "25年以上の経験により、kongBANKは高級で高品質な銀行サービスを提供する信頼できるパートナーとなりました。",
-                trusted: "信頼性",
-                trusted_desc: "100万人以上のプレミアム顧客が当行の独占的銀行サービスを信頼",
-                innovative: "革新的",
-                innovative_desc: "AIを活用した最先端のデジタルバンキング技術でプレミアム取引の利便性を提供",
-                professional: "プロフェッショナル",
-                professional_desc: "国際認定を受けた専門家チームがお客様の独占的な金融ニーズにお応えします",
-                
-                // Services Section
-                services_title: "プレミアムサービス",
-                services_description: "すべての金融ニーズに対応する高級で独占的な銀行ソリューション",
-                premium_savings: "プレミアム貯蓄",
-                premium_savings_desc: "最高金利とVIP施設を備えた各種独占貯蓄オプション",
-                platinum_credit: "プラチナクレジット",
-                platinum_credit_desc: "高限度額と迅速処理を備えたプレミアムニーズ向けプラチナクレジットソリューション",
-                wealth_management: "ウェルスマネジメント",
-                wealth_management_desc: "最適な投資のための個人アドバイザー付き独占的ウェルスマネジメント",
-                private_banking: "プライベートバンキング",
-                private_banking_desc: "AI機能と24/7コンシェルジュサービスを備えた独占的銀行アプリケーション",
-                
-                // Statistics
-                stats_title: "kongBANKの実績",
-                stats_description: "プレミアム銀行サービス提供における誇らしい実績",
-                premium_customers: "プレミアム顧客",
-                luxury_branches: "高級支店",
-                years_trust: "年の信頼",
-                best_system: "最高システム",
-                
-                // Contact Section
-                contact_title: "kongBANKへのお問い合わせ",
-                contact_description: "プレミアムカスタマーサービスチームが独占的なサービスでお客様をサポートします",
-                vip_whatsapp: "VIP WhatsApp",
-                click_to_chat: "クリックして直接チャット",
-                available_24_7: "24/7対応",
-                premium_email: "プレミアムメール",
-                click_to_email: "クリックしてメール送信",
-                exclusive_service: "独占サービス",
-                head_office: "本社",
-                
-                // Footer
-                footer_description: "輝かしい未来のための独占的で革新的な銀行サービスを提供する信頼できる高級銀行。",
-                premium_services: "プレミアムサービス",
-                information: "情報",
-                join_us: "採用情報",
-                exclusive_careers: "独占的キャリア",
-                premium_news: "プレミアムニュース",
-                vip_customer_service: "VIPカスタマーサービス",
-                click_whatsapp: "WhatsAppをクリック",
-                footer_rights: "すべての権利を保有。| プレミアム利用規約 | 独占プライバシーポリシー",
-                
-                // Crypto Section
-                crypto_partners: "信頼できる暗号通貨パートナー",
-                crypto_partners_desc: "プレミアム暗号通貨取引・投資"
-            },
-            
-            ko: {
-                // Navigation
-                nav_home: "홈",
-                nav_about: "회사소개",
-                nav_services: "서비스",
-                nav_contact: "문의",
-                login: "로그인",
-                select_language: "언어 선택:",
-                
-                // Hero Section
-                tagline: "프리미어 금융기관",
-                welcome: "환영합니다",
-                premium_excellence: "프리미엄 뱅킹 익셀런스",
-                hero_description: "독점적인 금융 솔루션, 세계적 수준의 투자, 비교할 수 없는 24/7 컨시어지 서비스를 위해 kongBANK를 신뢰하는 100만 명 이상의 프리미엄 고객과 함께하세요.",
-                open_account: "프리미엄 계좌 개설",
-                free_consultation: "무료 상담",
-                
-                // About Section
-                about_title: "kongBANK 소개",
-                about_description: "25년 이상의 경험으로 kongBANK는 럭셔리하고 고품질의 은행 서비스를 제공하는 신뢰할 수 있는 파트너가 되었습니다.",
-                trusted: "신뢰성",
-                trusted_desc: "100만 명 이상의 프리미엄 고객이 저희의 독점적인 은행 서비스를 신뢰합니다",
-                innovative: "혁신적",
-                innovative_desc: "프리미엄 거래 편의성을 위한 AI를 활용한 최첨단 디지털 뱅킹 기술",
-                professional: "전문적",
-                professional_desc: "국제 인증을 받은 전문가 팀이 고객님의 독점적인 금융 요구사항을 서비스할 준비가 되어 있습니다",
-                
-                // Services Section
-                services_title: "프리미엄 서비스",
-                services_description: "모든 금융 요구사항을 위한 럭셔리하고 독점적인 은행 솔루션",
-                premium_savings: "프리미엄 저축",
-                premium_savings_desc: "최고 금리와 VIP 시설을 갖춘 다양한 독점 저축 옵션",
-                platinum_credit: "플래티넘 신용",
-                platinum_credit_desc: "높은 한도와 신속한 처리를 제공하는 프리미엄 요구사항을 위한 플래티넘 신용 솔루션",
-                wealth_management: "자산 관리",
-                wealth_management_desc: "최적의 투자를 위한 개인 어드바이저가 있는 독점적 자산 관리",
-                private_banking: "프라이빗 뱅킹",
-                private_banking_desc: "AI 기능과 24/7 컨시어지 서비스를 갖춘 독점적 뱅킹 애플리케이션",
-                
-                // Statistics
-                stats_title: "kongBANK 성과",
-                stats_description: "프리미엄 은행 서비스 제공에서의 자랑스러운 성과",
-                premium_customers: "프리미엄 고객",
-                luxury_branches: "럭셔리 지점",
-                years_trust: "년의 신뢰",
-                best_system: "최고 시스템",
-                
-                // Contact Section
-                contact_title: "kongBANK 문의",
-                contact_description: "저희 프리미엄 고객 서비스 팀이 독점적인 서비스로 고객님을 모실 준비가 되어 있습니다",
-                vip_whatsapp: "VIP WhatsApp",
-                click_to_chat: "클릭하여 직접 채팅",
-                available_24_7: "24/7 이용 가능",
-                premium_email: "프리미엄 이메일",
-                click_to_email: "클릭하여 이메일 보내기",
-                exclusive_service: "독점 서비스",
-                head_office: "본사",
-                
-                // Footer
-                footer_description: "영광스러운 미래를 위한 독점적이고 혁신적인 은행 서비스를 제공하는 신뢰할 수 있는 럭셔리 은행입니다.",
-                premium_services: "프리미엄 서비스",
-                information: "정보",
-                join_us: "함께하기",
-                exclusive_careers: "독점 채용",
-                premium_news: "프리미엄 뉴스",
-                vip_customer_service: "VIP 고객 서비스",
-                click_whatsapp: "WhatsApp 클릭",
-                footer_rights: "모든 권리 보유. | 프리미엄 이용약관 | 독점 개인정보보호정책",
-                
-                // Crypto Section
-                crypto_partners: "신뢰할 수 있는 암호화폐 파트너",
-                crypto_partners_desc: "프리미엄 암호화폐 거래 및 투자"
-            }
-        };
-
-        // Language functionality
-        let currentLang = localStorage.getItem('kongbank-language') || 'id';
-        
-        // Language flags and labels
-        const languageData = {
-            id: { flag: '🇮🇩', label: 'ID' },
-            en: { flag: '🇺🇸', label: 'EN' },
-            zh: { flag: '🇨🇳', label: '中文' },
-            ja: { flag: '🇯🇵', label: '日本語' },
-            ko: { flag: '🇰🇷', label: '한국어' }
-        };
-
-        // Update language display
-        function updateLanguageDisplay() {
-            const currentFlag = document.getElementById('current-flag');
-            const currentLangEl = document.getElementById('current-lang');
-            
-            if (currentFlag && currentLangEl) {
-                currentFlag.textContent = languageData[currentLang].flag;
-                currentLangEl.textContent = languageData[currentLang].label;
-            }
+    <script>
+        // Dropdown
+        const langBtn = document.getElementById('language-btn');
+        const langDrop = document.getElementById('language-dropdown');
+        if(langBtn) {
+            langBtn.addEventListener('click', (e) => { e.stopPropagation(); langDrop.classList.toggle('active'); });
+            document.addEventListener('click', () => langDrop.classList.remove('active'));
         }
 
-        // Translate page content
-        function translatePage(lang) {
-            const elements = document.querySelectorAll('[data-translate]');
-            const translation = translations[lang];
-            
-            if (!translation) return;
-            
-            elements.forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translation[key]) {
-                    // Handle HTML content for elements that need formatting
-                    if (key === 'hero_description') {
-                        const text = translation[key];
-                        element.innerHTML = text.replace('kongBANK', '<span class="text-amber-300 font-semibold">kongBANK</span>');
-                    } else if (key === 'about_title') {
-                        const text = translation[key];
-                        element.innerHTML = text.replace('kongBANK', 'kong<span class="text-amber-600">BANK</span>');
-                    } else if (key === 'stats_title') {
-                        const text = translation[key];
-                        element.innerHTML = text.replace('kongBANK', '<span class="text-yellow-200">BANK</span>');
-                    } else if (key === 'contact_title') {
-                        const text = translation[key];
-                        element.innerHTML = text.replace('kongBANK', '<span class="text-amber-600">BANK</span>');
-                    } else if (key === 'footer_rights') {
-                        const text = translation[key];
-                        element.innerHTML = '&copy; 2025 <span class="text-white">kong</span><span class="text-amber-400">BANK</span>. ' + text;
-                    } else {
-                        element.textContent = translation[key];
-                    }
-                }
-            });
-            
-            currentLang = lang;
-            localStorage.setItem('kongbank-language', lang);
-            updateLanguageDisplay();
-        }
-
-        // Initialize language
-        translatePage(currentLang);
-        updateLanguageDisplay();
-
-        // Desktop language dropdown functionality
-        const languageBtn = document.getElementById('language-btn');
-        const languageDropdown = document.getElementById('language-dropdown');
-        const languageOptions = document.querySelectorAll('.language-option');
-
-        if (languageBtn && languageDropdown) {
-            languageBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isVisible = languageDropdown.classList.contains('opacity-100');
-                
-                if (isVisible) {
-                    languageDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-                    languageDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-                } else {
-                    languageDropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
-                    languageDropdown.classList.add('opacity-100', 'visible', 'scale-100');
-                }
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', () => {
-                languageDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-                languageDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-            });
-
-            // Language option selection
-            languageOptions.forEach(option => {
-                option.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const selectedLang = option.getAttribute('data-lang');
-                    translatePage(selectedLang);
-                    
-                    // Close dropdown
-                    languageDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-                    languageDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-                });
-            });
-        }
-
-        // Mobile language options
-        const mobileLanguageOptions = document.querySelectorAll('.mobile-language-option');
-        mobileLanguageOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const selectedLang = option.getAttribute('data-lang');
-                translatePage(selectedLang);
-                
-                // Close mobile menu
-                const mobileMenu = document.getElementById('mobile-menu');
-                const mobileMenuButton = document.getElementById('mobile-menu-btn');
-                if (mobileMenu && mobileMenuButton) {
-                    mobileMenu.classList.remove('active');
-                    const icon = mobileMenuButton.querySelector('svg');
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
-                }
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                if (href && href !== '#') {
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Interactive buttons functionality
-        const bukaRekeningBtn = document.getElementById('buka-rekening-btn');
-        const konsultasiBtn = document.getElementById('konsultasi-btn');
-        const loginBtn = document.getElementById('login-btn');
-        const mobileLoginBtn = document.getElementById('mobile-login-btn');
-
-        // Buka Rekening Premium button
-        if (bukaRekeningBtn) {
-            bukaRekeningBtn.addEventListener('click', () => {
-                // Show beautiful alert with premium styling
-                showPremiumAlert(
-                    '🏆 Selamat! Anda Akan Bergabung dengan kongBANK Premium!',
-                    'Kami akan segera menghubungi Anda untuk proses pembukaan rekening premium. Anda akan mendapatkan:\n\n✨ Kartu Platinum Eksklusif\n💎 Layanan Private Banking\n🎯 Investment Advisory Personal\n🌟 Concierge Service 24/7\n\nKlik OK untuk melanjutkan ke WhatsApp VIP kami!',
-                    () => {
-                        // Redirect to WhatsApp with premium message
-                        const message = encodeURIComponent(
-                            '🏆 Halo kongBANK Premium Support!\n\n' +
-                            'Saya tertarik untuk membuka Rekening Premium dengan benefit:\n' +
-                            '✨ Kartu Platinum Eksklusif\n' +
-                            '💎 Layanan Private Banking\n' +
-                            '🎯 Investment Advisory Personal\n' +
-                            '🌟 Concierge Service 24/7\n\n' +
-                            'Mohon informasi lengkap dan jadwalkan konsultasi premium saya. Terima kasih!'
-                        );
-                        window.open(`https://wa.me/447440014278?text=${message}`, '_blank');
-                    }
-                );
-            });
-        }
-
-        // Konsultasi Gratis button  
-        if (konsultasiBtn) {
-            konsultasiBtn.addEventListener('click', () => {
-                showPremiumAlert(
-                    '💬 Konsultasi Gratis dengan Expert kongBANK!',
-                    'Dapatkan konsultasi GRATIS dari ahli perbankan premium kami!\n\n🎯 Analisis Keuangan Personal\n💰 Strategi Investasi Optimal\n🏆 Rekomendasi Produk Premium\n📈 Perencanaan Wealth Management\n\nKonsultasi via WhatsApp VIP - Klik OK untuk memulai!',
-                    () => {
-                        const message = encodeURIComponent(
-                            '💬 Halo Tim Expert kongBANK!\n\n' +
-                            'Saya ingin menggunakan layanan Konsultasi GRATIS untuk:\n' +
-                            '🎯 Analisis Keuangan Personal\n' +
-                            '💰 Strategi Investasi Optimal\n' +
-                            '🏆 Rekomendasi Produk Premium\n' +
-                            '📈 Perencanaan Wealth Management\n\n' +
-                            'Mohon jadwalkan sesi konsultasi gratis saya. Terima kasih!'
-                        );
-                        window.open(`https://wa.me/447440014278?text=${message}`, '_blank');
-                    }
-                );
-            });
-        }
-
-        // Login buttons functionality
-        const handleLogin = () => {
-            showPremiumAlert(
-                '🔐 Akses Premium kongBANK',
-                'Untuk mengakses layanan premium kongBANK, Anda perlu:\n\n✅ Membuka rekening premium terlebih dahulu\n🎯 Verifikasi identitas eksklusif\n💎 Aktivasi kartu platinum\n🔒 Setup keamanan berlapis\n\nHubungi customer service VIP kami untuk panduan login premium!',
-                () => {
-                    const message = encodeURIComponent(
-                        '🔐 Halo kongBANK VIP Support!\n\n' +
-                        'Saya membutuhkan bantuan untuk:\n' +
-                        '✅ Proses pembukaan rekening premium\n' +
-                        '🎯 Verifikasi identitas eksklusif\n' +
-                        '💎 Aktivasi kartu platinum\n' +
-                        '🔒 Setup login premium & keamanan\n\n' +
-                        'Mohon panduan lengkap untuk akses premium saya. Terima kasih!'
-                    );
-                    window.open(`https://wa.me/447440014278?text=${message}`, '_blank');
-                }
-            );
-        };
-
-        if (loginBtn) {
-            loginBtn.addEventListener('click', handleLogin);
-        }
-
-        if (mobileLoginBtn) {
-            mobileLoginBtn.addEventListener('click', handleLogin);
-        }
-
-        // Premium Alert Function
-        function showPremiumAlert(title, message, callback) {
-            // Create premium modal overlay
-            const overlay = document.createElement('div');
-            overlay.className = 'fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[9999] p-4';
-            overlay.style.animation = 'fadeIn 0.3s ease-out';
-
-            // Create modal content
-            const modal = document.createElement('div');
-            modal.className = 'bg-white rounded-3xl shadow-2xl max-w-md w-full transform scale-95';
-            modal.style.animation = 'slideIn 0.3s ease-out forwards';
-
-            modal.innerHTML = `
-                <div class="luxury-gradient p-6 rounded-t-3xl text-center">
-                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2l9 4.5v9L12 20l-9-4.5v-9L12 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">${title}</h3>
-                </div>
-                <div class="p-6">
-                    <p class="text-gray-700 text-sm leading-relaxed whitespace-pre-line mb-6">${message}</p>
-                    <div class="flex gap-3">
-                        <button id="cancel-btn" class="flex-1 px-4 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300">
-                            Nanti Saja
-                        </button>
-                        <button id="confirm-btn" class="flex-1 px-4 py-3 luxury-gradient text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                            Ya, Lanjutkan!
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            overlay.appendChild(modal);
-            document.body.appendChild(overlay);
-
-            // Add animations
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-                @keyframes slideIn {
-                    from { transform: scale(0.8) translateY(20px); opacity: 0; }
-                    to { transform: scale(1) translateY(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: scale(1) translateY(0); opacity: 1; }
-                    to { transform: scale(0.8) translateY(-20px); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-
-            // Event listeners
-            const cancelBtn = modal.querySelector('#cancel-btn');
-            const confirmBtn = modal.querySelector('#confirm-btn');
-
-            const closeModal = () => {
-                overlay.style.animation = 'fadeIn 0.2s ease-out reverse';
-                modal.style.animation = 'slideOut 0.2s ease-out forwards';
-                setTimeout(() => {
-                    document.body.removeChild(overlay);
-                    document.head.removeChild(style);
-                }, 200);
-            };
-
-            cancelBtn.addEventListener('click', closeModal);
-            confirmBtn.addEventListener('click', () => {
-                closeModal();
-                if (callback) callback();
-            });
-
-            // Close on overlay click
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) closeModal();
-            });
-
-            // Close on Escape key
-            const handleEscape = (e) => {
-                if (e.key === 'Escape') {
-                    closeModal();
-                    document.removeEventListener('keydown', handleEscape);
-                }
-            };
-            document.addEventListener('keydown', handleEscape);
-        }
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-btn');
+        // Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                
-                // Toggle hamburger icon
-                const icon = mobileMenuButton.querySelector('svg');
-                if (mobileMenu.classList.contains('active')) {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
-                } else {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
-                }
-            });
-            
-            // Close mobile menu when clicking on links
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    const icon = mobileMenuButton.querySelector('svg');
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
-                });
-            });
+        if(mobileBtn) {
+            mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('active'));
         }
 
-        // Back to Top Button Functionality
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        // Show/hide button based on scroll position
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            
-            if (scrolled > windowHeight * 0.3) {
-                // Show button when scrolled down 30% of viewport height
-                backToTopButton.style.transform = 'scale(1)';
-                backToTopButton.style.opacity = '1';
-            } else {
-                // Hide button when near top
-                backToTopButton.style.transform = 'scale(0)';
-                backToTopButton.style.opacity = '0';
-            }
-        });
-        
-        // Smooth scroll to top when clicked
-        backToTopButton.addEventListener('click', () => {
-            // Add click animation
-            backToTopButton.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                backToTopButton.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    backToTopButton.style.transform = 'scale(1)';
-                }, 150);
-            }, 100);
-            
-            // Smooth scroll to top
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Add floating animation
-        let floatDirection = 1;
-        setInterval(() => {
-            if (backToTopButton.style.opacity === '1') {
-                const currentTransform = backToTopButton.style.transform;
-                const translateY = floatDirection * 2;
-                backToTopButton.style.transform = currentTransform.replace(/translateY\([^)]*\)/, '') + ` translateY(${translateY}px)`;
-                floatDirection *= -1;
-            }
-        }, 2000);
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function(e) { 
+            e.preventDefault(); 
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) target.scrollIntoView({ behavior: 'smooth' });
+            if(mobileMenu) mobileMenu.classList.remove('active');
+        }));
 
-        // MIND BLOWING FEATURES IMPLEMENTATION 🤯🚀
-        
-        // 1. LIVE CRYPTO PRICE UPDATES
-        function updateCryptoPrices() {
-            const prices = document.querySelectorAll('.crypto-ticker strong');
-            const cryptoData = [
-                { symbol: 'BTC', price: 67890, change: 2.34 + (Math.random() - 0.5) * 2 },
-                { symbol: 'ETH', price: 3456, change: 1.89 + (Math.random() - 0.5) * 3 },
-                { symbol: 'BNB', price: 598, change: -0.45 + (Math.random() - 0.5) * 2 },
-                { symbol: 'ADA', price: 0.89, change: 3.21 + (Math.random() - 0.5) * 4 },
-                { symbol: 'SOL', price: 156, change: 5.67 + (Math.random() - 0.5) * 3 }
-            ];
-            
-            cryptoData.forEach((crypto, index) => {
-                const priceEl = prices[index]?.parentElement.querySelector('.font-bold');
-                const changeEl = prices[index]?.parentElement.querySelector('.text-xs');
-                
-                if (priceEl && changeEl) {
-                    const newPrice = crypto.price + (Math.random() - 0.5) * 100;
-                    const newChange = crypto.change + (Math.random() - 0.5) * 2;
-                    
-                    priceEl.textContent = `${newPrice.toFixed(crypto.symbol === 'ADA' ? 2 : 0).toLocaleString()}`;
-                    priceEl.className = newChange > 0 ? 'price-up font-bold' : 'price-down font-bold';
-                    changeEl.textContent = `${newChange > 0 ? '+' : ''}${newChange.toFixed(2)}%`;
-                    changeEl.className = newChange > 0 ? 'text-green-400 text-xs' : 'text-red-400 text-xs';
-                }
-            });
-        }
-        
-        // Update prices every 8 seconds
-        setInterval(updateCryptoPrices, 8000);
-        
-        // 2. WEALTH CALCULATOR INTERACTIVE
-        const investmentSlider = document.getElementById('investment-slider');
-        const investmentDisplay = document.getElementById('investment-display');
+        // Reveal on Scroll
+        const obs = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // Wealth Structuring Simulator
+        const slider = document.getElementById('investment-slider');
+        const display = document.getElementById('investment-display');
         const profitDisplay = document.getElementById('profit-display');
-        const roiDisplay = document.getElementById('roi-display');
-        const calculatorCTA = document.getElementById('calculator-cta');
-        
-        function updateCalculator() {
-            const investment = parseInt(investmentSlider.value);
-            const roi = 0.57; // 57% ROI
-            const profit = investment * roi;
-            const total = investment + profit;
+
+        function updateCalc() {
+            if(!slider) return;
+            const inv = parseInt(slider.value);
+            display.value = '$' + inv.toLocaleString();
             
-            investmentDisplay.value = `${investment.toLocaleString()}`;
-            profitDisplay.textContent = `${total.toLocaleString()}`;
-            roiDisplay.textContent = `+${Math.round(roi * 100)}%`;
-        }
-        
-        if (investmentSlider) {
-            investmentSlider.addEventListener('input', updateCalculator);
-            updateCalculator(); // Initial calculation
-        }
-        
-        if (calculatorCTA) {
-            calculatorCTA.addEventListener('click', () => {
-                const investment = parseInt(investmentSlider.value);
-                const message = encodeURIComponent(
-                    `🏆 Halo kongBANK Premium Advisor!\n\n` +
-                    `Saya tertarik untuk memulai investasi premium sebesar ${investment.toLocaleString()}.\n\n` +
-                    `Berdasarkan kalkulator, saya bisa meraih profit hingga ${(investment * 1.57).toLocaleString()} dalam 1 tahun!\n\n` +
-                    `Mohon jadwalkan konsultasi premium untuk:\n` +
-                    `💰 Portfolio planning optimal\n` +
-                    `🎯 Strategi investasi terbaik\n` +
-                    `📈 Wealth management eksklusif\n\n` +
-                    `Terima kasih!`
-                );
-                window.open(`https://wa.me/447440014278?text=${message}`, '_blank');
-            });
-        }
-        
-        // 3. LIVE PROFIT COUNTER
-        function updateProfitCounter() {
-            const profitCounter = document.getElementById('live-profit-counter');
-            const activeTraders = document.getElementById('active-traders');
+            let yieldPct = 8.42;
+            if (inv > 10000000) yieldPct = 9.15;
+            if (inv > 25000000) yieldPct = 10.05;
             
-            if (profitCounter) {
-                const currentProfit = parseInt(profitCounter.textContent.replace(/,/g, ''));
-                const increment = Math.floor(Math.random() * 1000) + 500; // Random increment 500-1500
-                const newProfit = currentProfit + increment;
-                
-                profitCounter.textContent = newProfit.toLocaleString();
-                profitCounter.style.animation = 'none';
-                profitCounter.offsetHeight; // Trigger reflow
-                profitCounter.style.animation = 'countUp 0.5s ease-out';
-            }
-            
-            if (activeTraders) {
-                const currentTraders = parseInt(activeTraders.textContent.replace(/,/g, ''));
-                const change = Math.floor(Math.random() * 20) - 5; // Random change -5 to +15
-                const newTraders = Math.max(10000, currentTraders + change);
-                
-                activeTraders.textContent = newTraders.toLocaleString();
-                activeTraders.style.animation = 'none';
-                activeTraders.offsetHeight;
-                activeTraders.style.animation = 'countUp 0.5s ease-out';
-            }
+            profitDisplay.textContent = yieldPct.toFixed(2) + '%';
         }
-        
-        // Update profit counter every 12 seconds
-        setInterval(updateProfitCounter, 12000);
-        
-        // 4. TESTIMONIAL CAROUSEL
-        const testimonials = [
-            {
-                name: "David Chen",
-                title: "CEO Tech Startup",
-                location: "Jakarta",
-                text: "kongBANK mengubah hidup saya! Profit $150K dalam 8 bulan dengan wealth management premium mereka. Tim advisor sangat profesional!",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-            },
-            {
-                name: "Sarah Miller",
-                title: "Crypto Trader",
-                location: "Singapore",
-                text: "Flash loan arbitrage strategy mereka incredible! $280K profit dalam 6 bulan. Platform trading crypto paling canggih yang pernah saya gunakan!",
-                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face"
-            },
-            {
-                name: "Michael Zhang",
-                title: "Investment Banker",
-                location: "Hong Kong",
-                text: "Sebagai banker profesional, saya sangat terkesan dengan layanan private banking kongBANK. ROI portfolio saya naik 340% year-to-date!",
-                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
-            },
-            {
-                name: "Lisa Wang",
-                title: "Property Developer",
-                location: "Kuala Lumpur",
-                text: "Credit platinum dengan limit $2M approved dalam 24 jam! Dengan dana tersebut, saya berhasil close deal property senilai $15M. Amazing service!",
-                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
-            }
+        if(slider) {
+            slider.addEventListener('input', updateCalc); 
+            updateCalc();
+        }
+
+        // Institutional Notifs
+        const notifs = [
+            { txt: "Corporate Account Opened", loc: "Geneva, CH", val: "$25M Custody" },
+            { txt: "Digital Asset Trade Executed", loc: "Hong Kong, HK", val: "$48.2M OTC Block" },
+            { txt: "Family Office Onboarded", loc: "London, UK", val: "Generational Trust" },
+            { txt: "Lombard Loan Approved", loc: "Singapore, SG", val: "$15M Facility" }
         ];
-        
-        let currentTestimonial = 0;
-        
-        function updateTestimonial(index) {
-            const testimonial = testimonials[index];
-            
-            document.getElementById('testimonial-text').textContent = testimonial.text;
-            document.getElementById('testimonial-name').textContent = testimonial.name;
-            document.getElementById('testimonial-title').textContent = testimonial.title;
-            document.getElementById('testimonial-location').textContent = testimonial.location;
-            document.getElementById('testimonial-avatar').src = testimonial.avatar;
-            
-            // Update dots
-            document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
-                dot.className = i === index 
-                    ? 'testimonial-dot w-3 h-3 rounded-full bg-amber-400' 
-                    : 'testimonial-dot w-3 h-3 rounded-full bg-gray-300';
-            });
-            
-            // Add animation
-            const container = document.getElementById('testimonial-container');
-            container.style.animation = 'none';
-            container.offsetHeight;
-            container.style.animation = 'fadeInTestimonial 0.6s ease-out';
+        function showNotif() {
+            const n = notifs[Math.floor(Math.random() * notifs.length)];
+            const c = document.getElementById('social-notifications');
+            if(!c) return;
+            const el = document.createElement('div');
+            el.className = 'notif-anim bg-white border-l-4 border-red-600 shadow-xl p-4 flex items-center gap-4';
+            el.innerHTML = `<div class="w-10 h-10 bg-black hexagon flex-shrink-0"></div><div><div class="font-bold text-xs uppercase-wide text-black">${n.txt}</div><div class="text-xs text-gray-500 mt-1">${n.loc} • ${n.val}</div></div>`;
+            c.appendChild(el);
+            setTimeout(() => el.remove(), 8000);
         }
-        
-        // Auto-rotate testimonials every 8 seconds
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            updateTestimonial(currentTestimonial);
-        }, 8000);
-        
-        // Manual testimonial navigation
-        document.querySelectorAll('.testimonial-dot').forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentTestimonial = index;
-                updateTestimonial(currentTestimonial);
-            });
-        });
-        
-        // 5. SOCIAL PROOF NOTIFICATIONS
-        const socialNotifications = [
-            { name: "John", city: "Singapore", action: "opened Premium Account", emoji: "💎" },
-            { name: "Maria", city: "Jakarta", action: "earned $5,670 profit", emoji: "🚀" },
-            { name: "David", city: "Bangkok", action: "upgraded to Platinum Member", emoji: "⭐" },
-            { name: "Sarah", city: "Manila", action: "received Bonus $1,000", emoji: "🎁" },
-            { name: "Kevin", city: "Kuala Lumpur", action: "completed $50K investment", emoji: "💰" },
-            { name: "Lisa", city: "Ho Chi Minh", action: "activated Private Banking", emoji: "👑" },
-            { name: "Michael", city: "Hong Kong", action: "earned $12,300 trading profit", emoji: "📈" },
-            { name: "Anna", city: "Mumbai", action: "claimed Flash Loan bonus", emoji: "⚡" }
-        ];
-        
-        function showSocialNotification() {
-            const notification = socialNotifications[Math.floor(Math.random() * socialNotifications.length)];
-            const container = document.getElementById('social-notifications');
-            
-            const notifElement = document.createElement('div');
-            notifElement.className = 'social-notification bg-white rounded-lg shadow-2xl p-4 mb-4 max-w-xs border-l-4 border-green-500';
-            notifElement.innerHTML = `
-                <div class="flex items-center space-x-3">
-                    <div class="text-2xl">${notification.emoji}</div>
-                    <div>
-                        <div class="font-bold text-gray-800 text-sm">${notification.name} from ${notification.city}</div>
-                        <div class="text-gray-600 text-xs">${notification.action}</div>
-                        <div class="text-green-600 text-xs font-semibold">2 minutes ago</div>
-                    </div>
-                </div>
-            `;
-            
-            container.appendChild(notifElement);
-            
-            // Remove notification after animation completes
-            setTimeout(() => {
-                if (container.contains(notifElement)) {
-                    container.removeChild(notifElement);
-                }
-            }, 8000);
-        }
-        
-        // Show social proof every 10-15 seconds
-        setInterval(showSocialNotification, Math.random() * 5000 + 10000);
-        
-        // 6. COUNTDOWN TIMERS
-        function updateCountdowns() {
-            const countdown1 = document.getElementById('countdown-timer');
-            const countdown2 = document.getElementById('offer-countdown');
-            const spotsLeft = document.getElementById('spots-left');
-            
-            // Simulate countdown
-            const now = new Date();
-            const endTime = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours from now
-            const timeLeft = endTime - now;
-            
-            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            
-            const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            
-            if (countdown1) countdown1.textContent = timeString;
-            if (countdown2) countdown2.textContent = timeString;
-            
-            // Randomly decrease spots left
-            if (spotsLeft && Math.random() < 0.1) { // 10% chance every update
-                const current = parseInt(spotsLeft.textContent);
-                if (current > 15) {
-                    spotsLeft.textContent = current - 1;
-                    spotsLeft.style.animation = 'none';
-                    spotsLeft.offsetHeight;
-                    spotsLeft.style.animation = 'urgencyPulse 2s ease-in-out infinite';
-                }
-            }
-        }
-        
-        // Update countdowns every second
-        setInterval(updateCountdowns, 1000);
-        
-        // 7. WHATSAPP VIP WIDGET
-        window.openWhatsAppVIP = function() {
-            const message = encodeURIComponent(
-                `💬 Halo kongBANK VIP Support!\n\n` +
-                `Saya tertarik dengan layanan premium kongBANK dan ingin informasi tentang:\n\n` +
-                `🏆 Premium Account benefits\n` +
-                `💎 Wealth Management services\n` +
-                `🚀 Crypto Trading platform\n` +
-                `⭐ Private Banking features\n\n` +
-                `Mohon jadwalkan konsultasi gratis dengan advisor premium. Terima kasih!`
-            );
-            window.open(`https://wa.me/447440014278?text=${message}`, '_blank');
-        };
-        
-        // 8. URGENCY OFFER BUTTON
-        const claimOfferBtn = document.getElementById('claim-offer-btn');
-        if (claimOfferBtn) {
-            claimOfferBtn.addEventListener('click', () => {
-                showPremiumAlert(
-                    '🎁 SELAMAT! Anda Berhasil Mengklaim Penawaran Eksklusif!',
-                    'Penawaran senilai $3,500 ini terbatas dan akan segera berakhir!\n\n🎁 Bonus Deposit: $1,000\n💳 Kartu Platinum: GRATIS\n👨‍💼 Personal Advisor: 1 bulan GRATIS\n\nTotal Savings: $3,500!\n\nKlik OK untuk melanjutkan proses klaim via WhatsApp VIP!',
-                    () => {
-                        const message = encodeURIComponent(
-                            `🎁 KLAIM PENAWARAN EKSKLUSIF!\n\n` +
-                            `Halo kongBANK Premium Team!\n\n` +
-                            `Saya ingin mengklaim penawaran terbatas senilai $3,500 yang meliputi:\n\n` +
-                            `🎁 Bonus Deposit: $1,000\n` +
-                            `💳 Kartu Platinum: GRATIS (worth $500)\n` +
-                            `👨‍💼 Personal Advisor: 1 bulan GRATIS (worth $2,000)\n\n` +
-                            `Total Savings: $3,500!\n\n` +
-                            `Mohon proses klaim saya sebelum penawaran berakhir. Terima kasih!`
-                        );
-                        window.open(`https://wa.me/447440014278?text=${message}`, '_blank');
-                    }
-                );
-            });
-        }
-        
-        // Counter animation
-        const counters = document.querySelectorAll('.text-4xl');
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        counters.forEach(counter => {
-            observer.observe(counter);
-        });
-
-        function animateCounter(element) {
-            const target = element.textContent;
-            const number = parseInt(target.replace(/\D/g, ''));
-            const suffix = target.replace(/[\d,]/g, '');
-            
-            // Check if number is valid
-            if (isNaN(number)) return;
-            
-            let current = 0;
-            const increment = number / 50;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= number) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current).toLocaleString() + suffix;
-                }
-            }, 50);
-        }
+        setInterval(showNotif, 10000);
     </script>
 </body>
 </html>

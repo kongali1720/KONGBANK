@@ -1,29 +1,8 @@
-const service = require("../../core/services/transaction.service");
+const express = require("express");
+const router = express.Router();
+const controller = require("../controllers/transaction.controller");
 
-exports.transfer = async (req, res) => {
-  try {
-    const result = await service.processTransfer(req.body);
+router.post("/transfer", controller.transfer);
+router.get("/status/:txId", controller.getStatus);
 
-    res.json({
-      status: "SUCCESS",
-      system: "KONG BANK CORE",
-      data: result
-    });
-
-  } catch (err) {
-    res.status(400).json({
-      status: "FAILED",
-      message: err.message
-    });
-  }
-};
-
-exports.getStatus = async (req, res) => {
-  const result = service.getTransaction(req.params.txId);
-
-  if (!result) {
-    return res.status(404).json({ status: "NOT_FOUND" });
-  }
-
-  res.json(result);
-};
+module.exports = router;

@@ -1,48 +1,39 @@
-const ledger = require("../ledger/ledger.engine");
-const kafka = require("../kafka/producer");
-const { validateISO20022 } = require("../iso20022/validator");
-const { toMT103 } = require("../swift/mt103.transformer");
-
-const transactions = new Map();
+const ledger = require("../ledger/ledger.service");
+const audit = require("../audit/audit.service");
 
 async function processTransfer(tx) {
-  validateISO20022(tx);
-
   const txId = "TX-" + Date.now();
 
-  // 🏦 DOUBLE ENTRY LEDGER
-  ledger.debit(tx.from, tx.amount);
-  ledger.credit(tx.to, tx.amount);
+  const beforeState = {
+    from: tx.from,
+    to: tx.to,
+    amount: tx.amount
+  };
 
-  const record = {
+  const result = await ledger.transfer({
     txId,
     from: tx.from,
     to: tx.to,
     amount: tx.amount,
-    currency: tx.currency,
-    status: "POSTED",
-    timestamp: new Date()
-  };
-
-  // 📡 SWIFT MESSAGE GENERATION
-  const swiftMessage = toMT103(record);
-
-  // ⚙️ SEND TO KAFKA EVENT STREAM
-  kafka.send("kong-bank-transactions", {
-    transaction: record,
-    swift: swiftMessage
+    currency: tx.currency
   });
 
-  transactions.set(txId, record);
+  const afterState = result;
 
-  return record;
+  // 📜 AUDIT TRAIL (CRITICAL BANK FEATURE)
+  await audit.logAudit({
+    entityType: "TRANSACTION",
+    entityId: txId,
+    action: "POSTED",
+    oldData: beforeState,
+    newData: afterState
+  });
+
+  return {
+    txId,
+    status: "POSTED",
+    ledger: result
+  };
 }
 
-function getTransaction(txId) {
-  return transactions.get(txId);
-}
-
-module.exports = {
-  processTransfer,
-  getTransaction
-};
+module.exports = { processTransfer };

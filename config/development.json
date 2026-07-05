@@ -1,0 +1,17 @@
+{
+  "app": "KONG BANK",
+  "env": "development",
+  "port": 4000,
+  "database": {
+    "host": "localhost",
+    "user": "kong",
+    "password": "kongpass",
+    "db": "kongbank"
+  },
+  "kafka": {
+    "broker": "localhost:9092"
+  },
+  "swift": {
+    "enabled": true
+  }
+}

@@ -1,192 +1,140 @@
-<div align="center">
-
-# 🏦 kongBANK
-
-![Version](https://img.shields.io/badge/Version-1.0-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Build](https://img.shields.io/badge/Build-Static%20HTML-brightgreen.svg)
-![Last Commit](https://img.shields.io/github/last-commit/kongali1720/kongBANK)
-![Made With](https://img.shields.io/badge/Made%20With-HTML5-orange)
-
----
-
-## 📝 Description
-
-**kongBANK** is a simple and elegant landing page prototype for banking and finance-related projects.  
-This repository hosts a static `index.html` file deployable directly via GitHub Pages for public access and demo purposes.
-
----
-
-<div align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmJyZmU5bzdlNmM1OHByYWF6OW45Z3hjZ3RvaGFrZzZ6dm5wZGtlcSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QiKkDC23O8kTSFumt0/giphy.gif" alt="kongBANK GIF" width="400" />
-</div>
-
----
-
-### ✨ Features
-
-🌐 Clean and responsive design  
-⚡ Fast loading static HTML page  
-📝 Easy to customize for your branding  
-🚀 Deployable via GitHub Pages within seconds
-
----
-
-<div align="center">
-  
-## 🚀 Deployment
-
-To deploy this project online:
-
-Clone the repository:
-
-   
-    git clone https://github.com/kongali1720/kongBANK.git
-    cd kongBANK
-   
-</div>
-
-## 📄 License
-
-This project is licensed under the MIT License.  
-See the [LICENSE](LICENSE) file for more details.
-
----
-
-##  Author
-
- **KONG GROUP** – [GitHub](https://github.com/kongali1720)
-
----
-
-⭐️ Feel free to star this repository if you find it useful.
-
-
-<div align="center">
-  
-## ❤️ Special Thanks
-
-Made with 🔥 by KONGALI1720 Cyber Force.  
-
-“Scan like a ghost, strike like a hammer.”  
-
-</div>
-
----
-
-<div align="center">
-  
-## ✅ Gaspol coding squad Indonesia! 🚀💻
-
- Halo, Sobat Koding!  
- Hey, Coding Friends!
-
- Kumpulan mini project Python yang gak bikin ngantuk!  
- Collection of Python mini projects that won’t bore you!
-
- Belajar sambil praktek langsung, cocok buat yang suka action daripada teori.  
- Learn by doing, perfect for those who prefer action over theory.
-
-Langsung eksekusi, langsung paham.  
-Run it directly, understand instantly.
-
-</div>
-
----
-
-<h3 align="center">💡 ☕ Traktir Kopi & Nasi Padang ama nasi Gorengnya ya cuy! 😄</h3>
-
-<div align="center">
-
-## Dukung terus biar semangat bikin karya edukatif lainnya...  
-## Keep supporting so I stay motivated to create more educational works...
-
-# 💡 ☕  [Buy Me a Coffee via PayPal](https://www.paypal.com/paypalme/bungtempong99)  
-
-Support with ☕ so I can buy 🍜 and keep being 🧠!
-
----
-
-<h2>📫 Let’s Connect Like Hackers</h2>
-
-| Platform | Detail |
-|:--------|:-------|
-| GitHub  | [kongali1720](https://github.com/kongali1720) |
-| Email   | [kongali1720@gmail.com](mailto:kongali1720@gmail.com) |
-| Site    | [Coming soon — stay curious... ](https://kongali1720.github.io) |
-
----
-
-## ❤️  💻 INITIATING HUMANITY MODE... for Down Syndrome ❤️
-
-| Item        | Keterangan / Description |
-|:------------|:-------------------------|
-| 🎯 Target   | Anak-anak Pejuang Down Syndrome / Kids with Down Syndrome |
-| 📡 Status   | Butuh Dukungan / Needs Support |
-| 🧠 Response | Buka Hati + Klik Link = Satu Senyum Baru / Open Heart + Click Link = One New Smile |
-
-Mereka bukan berbeda — mereka dilahirkan untuk mengajarkan dunia tentang cinta yang murni dan kesabaran yang luar biasa.  
-They are not different — they were born to teach the world pure love and extraordinary patience.
-
-<p align="center" style="font-size: 1.5rem;">
-  <a href="https://mydonation4ds.github.io/" target="_blank" style="display: inline-block;">
-    <img 
-      src="https://img.shields.io/badge/SUPPORT--NOW-%23FF6600?style=for-the-badge&logo=heart&logoColor=white&labelColor=white&color=FF6600" 
-      alt="Support Now" 
-      style="width: 300px; height: auto;" 
-    />
-  </a>
-</p>
-
-</div>
-
-
----
-
-<section align="center" style="font-family: Arial, sans-serif;">
-
-<h2 style="margin-bottom: 20px; color: #0070f3;">💳 Dukungan Pembayaran DONASINYA</h2>
-
-<table align="center" aria-label="Metode Pembayaran" style="margin: 0 auto; border-collapse: collapse; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
-  <thead style="background-color: #0070f3; color: white;">
-    <tr>
-      <th style="padding: 12px 25px; font-size: 18px;">Visa</th>
-      <th style="padding: 12px 25px; font-size: 18px;">Mastercard</th>
-      <th style="padding: 12px 25px; font-size: 18px;">PayPal</th>
-    </tr>
-  </thead>
-  <tbody style="background-color: #f9f9f9;">
-    <tr>
-      <td style="padding: 15px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Visa_Logo.png/120px-Visa_Logo.png" alt="Logo Visa" width="110" />
-      </td>
-      <td style="padding: 15px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/120px-Mastercard-logo.svg.png" alt="Logo Mastercard" width="110" />
-      </td>
-      <td style="padding: 15px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/PayPal_logo.svg/120px-PayPal_logo.svg.png" alt="Logo PayPal" width="110" />
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-</section>
-
-
----
-
 <p align="center">
-  Kalau project ini bantu kamu, jangan lupa kasih bintang ⭐ dan share ke temen-temen ya!<br>
-  Follow <a href="https://twitter.com/kongali1720" target="_blank" rel="noopener noreferrer">@kongali1720</a> buat diskusi dan update seru lainnya 🔥
+<img src="https://github.com/kongali1720/KongWallet-Payment-Gateway-API/blob/main/kop_surat.jpg" width="100%">
 </p>
 
-<p align="center" style="margin-top: 20px;">
-  <a href="https://twitter.com/kongali1720" target="_blank" rel="noopener noreferrer" aria-label="Follow kongali1720 on Twitter">
-    <img src="https://img.shields.io/twitter/follow/kongali1720?style=social" alt="Twitter Follow Badge" />
-  </a>
-</p>
-
-</div>
 <div align="center">
 
+# 🏦 KONG BANK — CORE BANKING CLOUD SYSTEM
+
+![Version](https://img.shields.io/badge/Version-Enterprise-blue.svg)
+![Architecture](https://img.shields.io/badge/Type-Core%20Banking%20System-red.svg)
+![Cloud](https://img.shields.io/badge/Deployment-Kubernetes-blue.svg)
+![Ledger](https://img.shields.io/badge/Engine-Double%20Entry-green.svg)
+![Messaging](https://img.shields.io/badge/ISO-20022%20%2F%20SWIFT-orange.svg)
+
 ---
+
+## 🧠 SYSTEM DESCRIPTION
+
+| 🏦 Core Banking Ledger | 📡 ISO 20022 Messaging | 🔁 SWIFT Bridge | ⚙️ Event Engine | ☸️ Cloud Platform | 📊 Monitoring |
+|------------------------|------------------------|------------------|------------------|------------------|----------------|
+| Double-entry accounting system | pacs.008 / camt / pacs.002 support | MT103 compatibility layer | Kafka event-driven settlement | Kubernetes-native architecture | Real-time banking dashboard |
+| ACID-compliant ledger system | Cross-bank messaging standard | ISO ↔ SWIFT transformation | Async transaction processing | Microservices deployment model | Live transaction tracking |
+| Balance integrity guarantee | Financial interoperability layer | Legacy SWIFT integration | High-throughput pipeline | Scalable cloud infrastructure | Audit & reporting system |
+
+## 🏗️ SYSTEM ARCHITECTURE (MERMAID)
+
+```mermaid
+flowchart TD
+
+A[Client / API Request]:::client --> B[KONG BANK API Gateway]:::api
+B --> C[ISO 20022 Validation Layer]:::iso
+C --> D[SWIFT ↔ ISO Transformation Engine]:::bridge
+D --> E[Kafka Event Streaming Engine]:::kafka
+E --> F[Settlement Worker Service]:::core
+F --> G[PostgreSQL Double Entry Ledger]:::db
+G --> H[Audit Event Store]:::audit
+H --> I[Real-Time Dashboard UI]:::ui
+
+classDef client fill:#2196f3,stroke:#ffffff,color:#ffffff;
+classDef api fill:#ff9800,stroke:#ffffff,color:#000000;
+classDef iso fill:#9c27b0,stroke:#ffffff,color:#ffffff;
+classDef bridge fill:#00bcd4,stroke:#ffffff,color:#000000;
+classDef kafka fill:#ff5722,stroke:#ffffff,color:#ffffff;
+classDef core fill:#4caf50,stroke:#ffffff,color:#ffffff;
+classDef db fill:#3f51b5,stroke:#ffffff,color:#ffffff;
+classDef audit fill:#607d8b,stroke:#ffffff,color:#ffffff;
+classDef ui fill:#e91e63,stroke:#ffffff,color:#ffffff;
+```
+
+## ☸️ KUBERNETES ARCHITECTURE
+
+```mermaid
+flowchart LR
+
+Ingress --> API[KONG BANK API POD]
+API --> ISO[ISO 20022 Processor]
+API --> SWIFT[SWIFT MT Engine]
+ISO --> Kafka[(Kafka Cluster)]
+SWIFT --> Kafka
+Kafka --> Worker[Settlement Workers]
+Worker --> DB[(PostgreSQL Ledger Cluster)]
+DB --> Dashboard[Banking Dashboard]
+
+classDef default fill:#111111,stroke:#00f5ff,color:#00f5ff;
+```
+
+---
+
+## DATA FLOW
+```mermaid
+flowchart TD
+
+A[Client / Mobile / API Request]:::client
+
+A --> B[API Gateway - KONG BANK CORE]:::api
+
+B --> C[Authentication & Security Layer]:::sec
+C --> D[ISO 20022 Parser / Validator]:::iso
+
+D --> E{Message Type Router}:::router
+
+E -->|pacs.008 Payment| F[Payment Orchestrator]:::core
+E -->|pacs.002 Status| G[Status Processor]:::core
+E -->|camt.053 Report| H[Statement Generator]:::core
+E -->|SWIFT MT103| I[SWIFT Transformation Engine]:::bridge
+
+F --> J[Kafka Event Stream]:::kafka
+G --> J
+H --> J
+I --> J
+
+J --> K[Settlement Worker Service]:::worker
+
+K --> L[Double Entry Ledger Engine]:::ledger
+L --> M[PostgreSQL Core Banking DB]:::db
+
+M --> N[Audit & Event Log Store]:::audit
+
+N --> O[Real-Time Dashboard UI]:::ui
+
+O --> P[Monitoring / SOC Banking Panel]:::ops
+
+%% STYLES
+classDef client fill:#1e88e5,stroke:#ffffff,color:#ffffff;
+classDef api fill:#fb8c00,stroke:#ffffff,color:#000000;
+classDef sec fill:#8e24aa,stroke:#ffffff,color:#ffffff;
+classDef iso fill:#3949ab,stroke:#ffffff,color:#ffffff;
+classDef router fill:#00897b,stroke:#ffffff,color:#ffffff;
+classDef core fill:#43a047,stroke:#ffffff,color:#ffffff;
+classDef bridge fill:#00acc1,stroke:#ffffff,color:#000000;
+classDef kafka fill:#e53935,stroke:#ffffff,color:#ffffff;
+classDef worker fill:#6d4c41,stroke:#ffffff,color:#ffffff;
+classDef ledger fill:#5e35b1,stroke:#ffffff,color:#ffffff;
+classDef db fill:#1e3a8a,stroke:#ffffff,color:#ffffff;
+classDef audit fill:#546e7a,stroke:#ffffff,color:#ffffff;
+classDef ui fill:#d81b60,stroke:#ffffff,color:#ffffff;
+classDef ops fill:#ff1744,stroke:#ffffff,color:#ffffff;
+```
+
+## 🧾 CORE FEATURES
+
+| 🏦 Core Banking Engine | 📡 Messaging Layer | ⚙️ Event-Driven Architecture | ☸️ Cloud-Native Deployment |
+|------------------------|--------------------|------------------------------|-----------------------------|
+| Double-entry accounting system | ISO 20022 messaging support (pacs.008, camt.053, pacs.002) | Kafka-based streaming settlement engine | Kubernetes-ready microservices architecture |
+| Real-time balance updates | SWIFT MT103 transformation layer | Asynchronous transaction processing | Horizontal auto-scaling support |
+| ACID-compliant transaction consistency | Cross-network interoperability bridge | High-throughput payment pipeline | Distributed banking system design |
+
+
+<div align="center">
+
+## ☕ Support the Project
+
+If this project has helped your research, learning, or security operations, consider supporting its continued development.
+
+<a href="https://www.paypal.com/paypalme/bungtempong99">
+<img src="https://img.shields.io/badge/☕-Support_Development-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000">
+</a>
+
+</div>
+
